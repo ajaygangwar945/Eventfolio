@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IIT Ropar | Validus & Advitiya</title>
+    <title>IIT Ropar</title>
     <link rel="icon" type="image/svg+xml" href="assets/images/advitiya-fav.svg">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -231,14 +231,14 @@
             box-shadow: 0 0 15px var(--yellow);
         }
 
-        /* Dynamic Certificate Section */
         /* Dynamic Certificate Grid */
         .certificates-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
             padding: 2rem;
-            max-width: 1200px;
+            max-width: 1400px;
+            /* Increased for better 3-col fit */
             margin: 2rem auto;
             opacity: 0;
             transform: translateY(20px);
@@ -254,102 +254,102 @@
 
         .cert-card-item {
             display: flex;
+            flex-direction: column;
+            /* Vertical on all sizes for grid consistency */
             align-items: center;
-            gap: 3rem;
             background: rgba(17, 17, 17, 0.6);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 20px;
-            padding: 3.5rem;
-            min-height: 450px;
-            /* Ensure substantial height */
-            text-align: left;
+            padding: 2.5rem;
+            text-align: center;
             transition: 0.3s;
             -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             position: relative;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .cert-card-item:hover {
             transform: translateY(-5px);
             border-color: var(--yellow);
-            background: rgba(17, 17, 17, 0.9);
+            background: rgba(255, 255, 255, 0.05);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
         }
 
         .cert-card-item .cert-img-container {
-            flex: 0 0 400px;
-            max-width: 400px;
+            width: 100%;
+            margin-bottom: 2rem;
         }
 
         .cert-card-item img {
             width: 100%;
+            height: auto;
             border-radius: 8px;
-            margin-bottom: 0;
-            border: 4px solid rgba(255, 255, 255, 0.8);
+            border: 2px solid rgba(255, 255, 255, 0.8);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             transition: 0.3s;
         }
 
-        .cert-card-item:hover img {
-            border-color: var(--yellow);
-        }
-
         .cert-card-item .cert-content {
-            flex: 1;
+            width: 100%;
             display: flex;
             flex-direction: column;
-            align-items: flex-start;
-            justify-content: center;
-            padding-left: 1rem;
+            align-items: center;
+        }
+
+        .cert-card-item .cert-badge {
+            margin-bottom: 1rem;
+            font-size: 0.8rem;
+            padding: 0.3rem 1rem;
+            background: rgba(240, 152, 25, 0.1);
+            border: 1px solid var(--yellow);
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--yellow);
+            font-weight: 600;
         }
 
         .cert-card-item h3 {
             color: var(--yellow);
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            line-height: 1.3;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
             font-weight: 700;
-        }
-
-        .cert-card-item .cert-badge {
-            margin-bottom: 1.5rem;
-            font-size: 0.85rem;
-            padding: 0.5rem 1.3rem;
-            background: rgba(240, 152, 25, 0.15);
-            border: 1.5px solid var(--yellow);
-            border-radius: 50px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--yellow);
-            display: inline-block;
-            font-weight: 600;
         }
 
         .cert-card-item .event-name {
             color: white;
-            font-size: 1.4rem;
-            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
             font-weight: 600;
-            line-height: 1.4;
         }
 
         .cert-card-item .org-name {
-            font-size: 1.05rem;
-            color: #aaa;
+            font-size: 0.95rem;
+            color: #ccc;
             margin-bottom: 1.5rem;
             font-style: italic;
-            line-height: 1.5;
         }
 
         .cert-card-item .issue-date {
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             color: var(--primary);
-            margin-top: auto;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            background: -webkit-linear-gradient(var(--secondary), var(--yellow));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            width: 100%;
         }
 
         @media (max-width: 768px) {
@@ -413,7 +413,7 @@
                 font-size: 0.9rem;
             }
 
-            .certificate-section h2 {
+            .section-title {
                 font-size: 2rem;
                 margin-bottom: 2rem;
             }
@@ -421,41 +421,22 @@
             .certificates-grid {
                 grid-template-columns: 1fr;
                 padding: 1rem;
+                gap: 2rem;
             }
 
             .cert-card-item {
-                flex-direction: column;
-                text-align: center;
-                padding: 1.5rem;
-                min-height: auto;
+                padding: 2rem 1.5rem;
                 gap: 1.5rem;
             }
+        }
 
-            .cert-card-item .cert-img-container {
-                max-width: 100%;
-                flex: none;
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.2rem;
             }
 
-            .cert-card-item .cert-content {
-                align-items: center;
-                padding-left: 0;
-            }
-
-            .cert-card-item h3 {
-                font-size: 1.4rem;
-            }
-
-            .cert-card-item .event-name {
-                font-size: 1.1rem;
-            }
-
-            .cert-card-item .org-name {
-                font-size: 0.9rem;
-            }
-
-            .cert-badge {
-                font-size: 0.7rem;
-                padding: 0.4rem 1rem;
+            .section-title {
+                font-size: 1.8rem;
             }
         }
 
@@ -479,16 +460,6 @@
         /* Certificate Section Headers */
         .certificate-section {
             padding: 2rem 5% 5rem;
-        }
-
-        .certificate-section h2 {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 3rem;
-            background: -webkit-linear-gradient(var(--secondary), var(--yellow));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
 
         .hero-subtitle {
@@ -637,7 +608,7 @@
 
     <!-- Certificate Section -->
     <section class="certificate-section">
-        <h2>Official Recognition</h2>
+        <h2 class="section-title">Official Recognition</h2>
         <div id="cert-grid" class="certificates-grid">
             <!-- Certificates will be injected here -->
         </div>
