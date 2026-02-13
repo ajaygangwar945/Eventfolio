@@ -226,92 +226,6 @@
             line-height: 1.6;
         }
 
-        .vision-text {
-            font-size: 1.2rem;
-            line-height: 2;
-            color: #a8b2d1;
-            column-count: 2;
-            column-gap: 4rem;
-            text-align: justify;
-        }
-
-        .spaced-card {
-            margin-top: 4rem;
-        }
-
-        .spaced-card {
-            margin-top: 4rem;
-        }
-
-        @media (max-width: 992px) {
-            .recognition-container {
-                flex-direction: column;
-                text-align: center;
-                padding: 2rem;
-            }
-
-            .cert-card {
-                max-width: 100%;
-            }
-
-            .org-item {
-                justify-content: center;
-            }
-
-            .vision-text {
-                column-count: 1;
-            }
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero {
-                height: auto;
-                padding: 6rem 1rem 3rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .hero-quote {
-                padding: 1rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            section {
-                padding: 3rem 5%;
-            }
-
-            .glass-card {
-                padding: 1.5rem;
-            }
-
-            .cert-details h3 {
-                font-size: 1.8rem;
-            }
-
-            .lightbox-nav {
-                width: 45px;
-                height: 45px;
-                font-size: 1.2rem;
-            }
-
-            #prev-btn {
-                left: 10px;
-            }
-
-            #next-btn {
-                right: 10px;
-            }
-        }
-
         .role-badge {
             background: rgba(212, 175, 55, 0.1);
             padding: 0.6rem 1.8rem;
@@ -355,7 +269,6 @@
             line-height: 1.5;
             padding-left: 0.5rem;
         }
-
 
         /* Section Styling */
         section {
@@ -539,7 +452,6 @@
             width: 20px;
         }
 
-        /* Diplomatic Archive Gallery */
         .masonry-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -562,30 +474,6 @@
             overflow: hidden;
         }
 
-        /* Institutional Badge */
-        .photo-frame::after {
-            content: 'UN ARCHIVE';
-            position: absolute;
-            top: 25px;
-            right: 25px;
-            background: var(--un-blue);
-            color: #fff;
-            padding: 4px 10px;
-            font-size: 0.6rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            border-radius: 4px;
-            opacity: 0.8;
-            pointer-events: none;
-        }
-
-        .photo-frame:hover {
-            transform: translateY(-10px);
-            border-color: var(--gold);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
-            background: rgba(17, 34, 64, 0.7);
-        }
-
         .photo-frame img {
             width: 100%;
             height: 350px;
@@ -594,10 +482,6 @@
             border-radius: 4px;
             filter: contrast(1.05);
             transition: 0.4s ease;
-        }
-
-        .photo-frame:hover img {
-            filter: contrast(1.1) brightness(1.1);
         }
 
         .photo-caption {
@@ -613,18 +497,6 @@
             letter-spacing: 0.5px;
         }
 
-        @media (max-width: 1024px) {
-            .recognition-container {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .org-item {
-                justify-content: center;
-            }
-        }
-
-        /* Lightbox Styles */
         #lightbox {
             position: fixed;
             top: 0;
@@ -711,6 +583,186 @@
             letter-spacing: 1px;
             text-align: center;
             width: 100%;
+        }
+
+        @media (max-width: 1024px) {
+            .recognition-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .org-item {
+                justify-content: center;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .recognition-container {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem;
+            }
+
+            .cert-card {
+                max-width: 100%;
+            }
+
+            .org-item {
+                justify-content: center;
+            }
+
+            .vision-text {
+                column-count: 1;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+                margin-bottom: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 1.1rem;
+                margin-bottom: 0.8rem;
+                gap: 0.4rem;
+                flex-wrap: wrap;
+                width: 100%;
+                overflow-wrap: break-word;
+                word-wrap: break-word;
+                hyphens: auto;
+            }
+
+            .section-title::after {
+                display: none;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .hero {
+                height: auto;
+                padding: 3.5rem 1.25rem 2rem;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+            }
+
+            .hero-quote {
+                padding: 1rem;
+                margin-top: 1.25rem;
+            }
+
+            .hero-quote p {
+                font-size: 0.9rem;
+            }
+
+            .role-badge {
+                font-size: 0.75rem;
+                padding: 0.4rem 1rem;
+                margin-top: 1.25rem;
+                letter-spacing: 1px;
+            }
+
+            section {
+                padding: 2rem 5%;
+            }
+
+            .glass-card {
+                padding: 1rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .card-title h2 {
+                font-size: 1rem;
+            }
+
+            .intro-text {
+                font-size: 0.95rem;
+                line-height: 1.5;
+            }
+
+            .responsibility-list {
+                margin-left: 1.2rem;
+            }
+
+            .responsibility-list li,
+            .competence-item p,
+            .vision-text {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+
+            .competence-grid {
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+                margin-top: 1.5rem;
+            }
+
+            .competence-item {
+                padding: 0.5rem 0;
+            }
+
+            .competence-item h4 {
+                font-size: 1.1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .cert-details h3 {
+                font-size: 1.6rem;
+            }
+
+            .cert-details p {
+                font-size: 0.95rem;
+                margin-bottom: 1.25rem;
+            }
+
+            .masonry-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+                padding: 2rem 5% 4rem;
+            }
+
+            .photo-frame {
+                padding: 10px 10px 40px 10px;
+            }
+
+            .photo-frame img {
+                height: 280px;
+            }
+
+            .lightbox-nav {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+
+            #prev-btn {
+                left: 10px;
+            }
+
+            #next-btn {
+                right: 10px;
+            }
+
+            .close-lightbox {
+                top: 20px;
+                right: 20px;
+                font-size: 2.5rem;
+            }
+
+            #lightbox-caption {
+                font-size: 1rem;
+                bottom: 20px;
+                padding: 0 10px;
+            }
         }
     </style>
 </head>

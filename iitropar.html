@@ -235,11 +235,11 @@
         /* Dynamic Certificate Grid */
         .certificates-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(900px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             padding: 2rem;
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 2rem auto;
             opacity: 0;
             transform: translateY(20px);
             transition: 0.4s ease-out;
@@ -352,9 +352,75 @@
             letter-spacing: 1.5px;
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 5%;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .logo img {
+                height: 30px;
+            }
+
+            .btn-back {
+                padding: 0.5rem 1.2rem;
+                font-size: 0.8rem;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero {
+                height: auto;
+                padding: 4rem 1rem 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero-desc {
+                font-size: 0.9rem;
+                padding: 0 1rem;
+            }
+
+            .fest-grid {
+                padding: 1rem 5% 3rem;
+                gap: 1.5rem;
+            }
+
+            .fest-card {
+                padding: 1.5rem;
+            }
+
+            .fest-header h2 {
+                font-size: 1.4rem;
+            }
+
+            .fest-date {
+                font-size: 0.9rem;
+            }
+
+            .fest-card h2 {
+                font-size: 1.6rem;
+            }
+
+            .fest-card li {
+                font-size: 0.9rem;
+            }
+
+            .certificate-section h2 {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
             .certificates-grid {
                 grid-template-columns: 1fr;
+                padding: 1rem;
             }
 
             .cert-card-item {
@@ -362,12 +428,7 @@
                 text-align: center;
                 padding: 1.5rem;
                 min-height: auto;
-            }
-
-            .cert-card-item .cert-content {
-                align-items: center;
-                padding-left: 0;
-                margin-top: 1.5rem;
+                gap: 1.5rem;
             }
 
             .cert-card-item .cert-img-container {
@@ -375,20 +436,26 @@
                 flex: none;
             }
 
+            .cert-card-item .cert-content {
+                align-items: center;
+                padding-left: 0;
+            }
+
             .cert-card-item h3 {
-                font-size: 1.5rem;
+                font-size: 1.4rem;
             }
 
-            h1 {
-                font-size: 2.8rem;
+            .cert-card-item .event-name {
+                font-size: 1.1rem;
             }
 
-            .hero {
-                height: 40vh;
+            .cert-card-item .org-name {
+                font-size: 0.9rem;
             }
 
-            .fest-grid {
-                gap: 1.5rem;
+            .cert-badge {
+                font-size: 0.7rem;
+                padding: 0.4rem 1rem;
             }
         }
 

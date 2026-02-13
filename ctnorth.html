@@ -130,6 +130,7 @@
             margin-bottom: 1.5rem;
             background: linear-gradient(to right, #fff, var(--primary));
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -423,38 +424,103 @@
         }
 
         @media (max-width: 768px) {
-            .certificate-container {
-                flex-direction: column;
-                text-align: center;
+            nav {
+                padding: 1rem 5%;
             }
 
-            .certificate-image {
-                max-width: 100%;
+            .logo {
+                font-size: 1.2rem;
             }
 
-            h1 {
-                font-size: 2.5rem;
+            .back-btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.8rem;
             }
 
             .hero {
-                padding: 4rem 1rem 2rem;
+                padding: 4rem 5% 2rem;
+                text-align: center;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+                margin-bottom: 1rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+                margin-bottom: 2rem;
             }
 
             .stats-container {
                 grid-template-columns: 1fr;
+                gap: 1rem;
             }
 
             .stat-card {
                 padding: 1.5rem;
             }
 
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .content-section {
+                padding: 3rem 5%;
+            }
+
             .section-title {
                 font-size: 1.6rem;
+                margin-bottom: 2rem;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .team-card {
+                padding: 1.5rem;
             }
 
             .organizer-chip {
                 width: 100%;
                 justify-content: center;
+                padding: 0.6rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .certificate-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+
+            .certificate-image {
+                max-width: 100%;
+            }
+
+            .certificate-details h3 {
+                font-size: 1.6rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+
+            .gallery-overlay {
+                transform: translateY(0);
+                padding: 1rem;
+                background: linear-gradient(to top, rgba(0, 26, 26, 0.95), transparent);
+            }
+
+            .footer-cta {
+                padding: 3rem 1.5rem;
+            }
+
+            .footer-cta h2 {
+                font-size: 1.5rem;
             }
 
             .lightbox-nav {
@@ -469,6 +535,12 @@
 
             #next-btn {
                 right: 10px;
+            }
+
+            .close-lightbox {
+                top: 15px;
+                right: 20px;
+                font-size: 2.5rem;
             }
         }
 
