@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eventfolio | Portfolio</title>
-    <link rel="icon" type="image/svg+xml" href="assets/images/portfolio-fav.svg">
+    <title>Eventfolio</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon-spirit.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -21,11 +21,12 @@
             /* Meadow Green */
             --accent-secondary: #f59e0b;
             /* Sunshine Yellow */
-            --text-main: #1e293b;
-            /* Ink Blue */
-            --text-dim: #64748b;
-            --glass: rgba(255, 255, 255, 0.6);
-            --glass-border: rgba(16, 185, 129, 0.2);
+            --text-main: #0f172a;
+            /* Deep Slate Blue - Darker for visibility */
+            --text-dim: #334155;
+            /* Darker Slate */
+            --glass: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(16, 185, 129, 0.3);
             --transition: cubic-bezier(0.23, 1, 0.32, 1);
             --ghibli-paper: #fffcf2;
         }
@@ -146,6 +147,113 @@
             }
         }
 
+        /* Animated Ghibli Clouds */
+        .bg-clouds {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 50%;
+            filter: blur(40px);
+            animation: cloudFloat 60s linear infinite;
+            opacity: 0.6;
+        }
+
+        .cloud:nth-child(1) {
+            width: 400px;
+            height: 150px;
+            top: 10%;
+            left: -10%;
+            animation-duration: 80s;
+        }
+
+        .cloud:nth-child(2) {
+            width: 600px;
+            height: 200px;
+            top: 40%;
+            left: -20%;
+            animation-duration: 120s;
+            animation-delay: -20s;
+        }
+
+        .cloud:nth-child(3) {
+            width: 500px;
+            height: 180px;
+            top: 70%;
+            left: -15%;
+            animation-duration: 100s;
+            animation-delay: -50s;
+        }
+
+        @keyframes cloudFloat {
+            0% {
+                transform: translateX(-100%) translateY(0);
+            }
+
+            100% {
+                transform: translateX(200%) translateY(20px);
+            }
+        }
+
+        /* Background Vistas (Repurposed Assets) */
+        .bg-vistas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -3;
+            opacity: 0.12;
+            filter: blur(5px) saturate(1.4);
+            overflow: hidden;
+        }
+
+        .vista-img {
+            position: absolute;
+            width: 35vmax;
+            height: auto;
+            animation: vistaFloat 40s ease-in-out infinite alternate;
+        }
+
+        .vista-1 {
+            top: 10%;
+            right: -10%;
+            animation-delay: 0s;
+        }
+
+        .vista-2 {
+            bottom: 10%;
+            left: -10%;
+            animation-delay: -10s;
+        }
+
+        .vista-3 {
+            top: 40%;
+            right: 15%;
+            width: 25vmax;
+            animation-delay: -20s;
+        }
+
+        @keyframes vistaFloat {
+            from {
+                transform: translate(0, 0) rotate(0deg) scale(1);
+            }
+
+            to {
+                transform: translate(-30px, 40px) rotate(3deg) scale(1.05);
+            }
+        }
+
         header {
             position: fixed;
             top: 0;
@@ -154,6 +262,7 @@
             padding: 1.5rem 5%;
             z-index: 1000;
             background: rgba(255, 252, 242, 0.7);
+            -webkit-backdrop-filter: blur(12px);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--glass-border);
         }
@@ -178,6 +287,80 @@
             height: 45px;
             fill: var(--accent-primary);
             filter: drop-shadow(2px 2px 0px rgba(16, 185, 129, 0.2));
+        }
+
+        /* Ghibli Character (SVG) */
+        .mascot-ghibli {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 2000;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: ghibliFloat 6s infinite ease-in-out;
+        }
+
+        .ghibli-character-svg {
+            filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
+        }
+
+        .mascot-speech {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+            border: 1px solid var(--glass-border);
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transform: translateY(10px);
+            animation: ghibliMessage 12s infinite 2s;
+            position: relative;
+        }
+
+        .mascot-speech::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            right: 25px;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-top: 8px solid rgba(255, 255, 255, 0.95);
+        }
+
+        @keyframes ghibliFloat {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(2deg);
+            }
+        }
+
+        @keyframes ghibliMessage {
+
+            0%,
+            15%,
+            85%,
+            100% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            20%,
+            80% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .logo {
@@ -264,11 +447,14 @@
             }
         }
 
+
+
         .card-icon {
             font-size: 1.2rem;
             margin-bottom: 0.5rem;
             display: block;
             color: var(--accent-secondary);
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
         }
 
         .nav-links {
@@ -314,17 +500,18 @@
             text-transform: uppercase;
             color: var(--accent-primary);
             margin-bottom: 2rem;
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
         }
 
         .hero h1 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(3rem, 10vw, 6rem);
-            line-height: 1;
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            line-height: 1.1;
             font-weight: 700;
             margin-bottom: 1.5rem;
             color: var(--text-main);
-            text-shadow: 2px 2px 0px rgba(16, 185, 129, 0.1);
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8), 2px 2px 0px rgba(16, 185, 129, 0.2);
         }
 
         .hero p {
@@ -433,6 +620,51 @@
             transition: 0.5s;
             z-index: 0;
             opacity: 0.5;
+            filter: saturate(1.2) contrast(1.1) brightness(1.05);
+        }
+
+        .ghibli-img {
+            filter: saturate(1) contrast(1) brightness(1) !important;
+            opacity: 0.6 !important;
+        }
+
+        /* Ghibli Placeholder Gradients */
+        .ghibli-gradient-sih {
+            background: linear-gradient(135deg, #fca5a5 0%, #fcd34d 100%);
+        }
+
+        .ghibli-gradient-ctnorth {
+            background: linear-gradient(135deg, #86efac 0%, #d8b4fe 100%);
+        }
+
+        .ghibli-gradient-igcmun {
+            background: linear-gradient(135deg, #93c5fd 0%, #c4b5fd 100%);
+        }
+
+        .ghibli-gradient-ctgroup {
+            background: linear-gradient(135deg, #fdba74 0%, #f472b6 100%);
+        }
+
+        .ghibli-gradient-journey {
+            background: linear-gradient(135deg, #a5b4fc 0%, #e879f9 100%);
+        }
+
+        .ghibli-gradient-scc {
+            background: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 100%);
+        }
+
+        .ghibli-gradient-hostel {
+            background: linear-gradient(135deg, #f0abfc 0%, #c026d3 100%);
+        }
+
+        .ghibli-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.5;
         }
 
         .card-content {
@@ -445,20 +677,27 @@
             font-size: 1.5rem;
             margin-bottom: 0.25rem;
             color: #fff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .card-content p {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.95);
             font-size: 0.9rem;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
         }
 
         .card-category {
-            font-size: 0.65rem;
+            font-size: 0.7rem;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1.5px;
             color: var(--accent-primary);
-            margin-bottom: 0.25rem;
-            display: block;
+            margin-bottom: 0.4rem;
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2px 8px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         /* Spans */
@@ -500,7 +739,8 @@
         .stat-item h4 {
             font-family: 'Space Grotesk', sans-serif;
             font-size: 2.8rem;
-            color: #fff;
+            color: var(--text-main);
+            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
         }
 
         .stat-item p {
@@ -511,36 +751,75 @@
         }
 
         footer {
-            padding: 6rem 5% 3rem;
+            padding: 8rem 5% 4rem;
             text-align: center;
+            background: linear-gradient(to top, rgba(16, 185, 129, 0.05) 0%, transparent 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 2;
         }
 
         .footer-logo {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin-bottom: 2.5rem;
+            letter-spacing: -1px;
         }
 
         .social-links {
             display: flex;
-            gap: 1.5rem;
             justify-content: center;
-            margin-bottom: 2rem;
+            gap: 2rem;
+            margin-bottom: 3.5rem;
         }
 
         .social-links a {
             color: var(--text-dim);
-            transition: 0.2s;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
+            transition: 0.4s var(--transition);
+            background: var(--glass);
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid var(--glass-border);
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
         }
 
         .social-links a:hover {
             color: var(--accent-primary);
+            transform: translateY(-8px) rotate(8deg);
+            border-color: var(--accent-primary);
+            box-shadow: 0 10px 25px rgba(16, 185, 129, 0.15);
         }
 
         .copyright {
             color: var(--text-dim);
-            font-size: 0.75rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+            font-weight: 500;
+        }
+
+        /* Footer Decoration */
+        .footer-decoration {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 150px;
+            background: radial-gradient(circle at bottom, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
+            z-index: 1;
+            pointer-events: none;
         }
 
         @media (max-width: 1024px) {
@@ -557,7 +836,7 @@
         @media (max-width: 768px) {
             .bento-grid {
                 grid-template-columns: 1fr;
-                grid-auto-rows: 300px;
+                grid-auto-rows: minmax(260px, auto);
             }
 
             .w-2,
@@ -567,7 +846,29 @@
             }
 
             .hero h1 {
-                font-size: 3.5rem;
+                font-size: 2.8rem;
+                letter-spacing: -1px;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+                padding: 0 1rem;
+            }
+
+            .cta-group {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+
+            .nav-links {
+                display: none;
+                /* Hide nav links on very small mobile for now or simplify */
+            }
+
+            .hero {
+                padding-top: 5rem;
             }
         }
     </style>
@@ -575,20 +876,46 @@
 
 <body>
     <canvas id="bg-canvas"></canvas>
+    <div class="bg-clouds">
+        <div class="cloud"></div>
+        <div class="cloud"></div>
+        <div class="cloud"></div>
+    </div>
+    <div class="bg-vistas">
+        <img src="assets/images/ghibli/echo.png" alt="" class="vista-img vista-1">
+        <img src="assets/images/ghibli/journey.png" alt="" class="vista-img vista-2">
+        <img src="assets/images/ghibli/advitiya.png" alt="" class="vista-img vista-3">
+    </div>
     <div class="nebula-glow"></div>
     <div class="cloud-layer cloud-1"></div>
     <div class="cloud-layer cloud-2"></div>
     <div class="god-rays"></div>
 
-    <!-- Decorative Anime Spirits -->
-    <div class="soot-sprite one">
-        <div class="pupil"></div>
-    </div>
-    <div class="soot-sprite two">
-        <div class="pupil"></div>
-    </div>
-    <div class="soot-sprite three">
-        <div class="pupil"></div>
+    <!-- Ghibli Art Character -->
+    <div class="mascot-ghibli">
+        <div class="mascot-speech">Spirited Away... ✨</div>
+        <svg class="ghibli-character-svg" width="100" height="auto" viewBox="0 0 100 120">
+            <!-- Leaf Base -->
+            <path d="M50 110 Q80 110 90 85 Q80 95 50 95 Q20 95 10 85 Q20 110 50 110" fill="#10b981"
+                fill-opacity="0.6" />
+            <!-- Spirit Body -->
+            <path d="M50 20 Q80 20 80 60 Q80 100 50 100 Q20 100 20 60 Q20 20 50 20" fill="white" stroke="#e2e8f0"
+                stroke-width="1" />
+            <!-- Ears -->
+            <path d="M30 25 Q30 5 40 15" fill="white" stroke="#e2e8f0" stroke-width="1" />
+            <path d="M70 25 Q70 5 60 15" fill="white" stroke="#e2e8f0" stroke-width="1" />
+            <!-- Eyes -->
+            <circle cx="38" cy="55" r="5" fill="#0f172a" />
+            <circle cx="36" cy="53" r="2" fill="white" />
+            <circle cx="62" cy="55" r="5" fill="#0f172a" />
+            <!-- Reflections -->
+            <circle cx="60" cy="53" r="2" fill="white" />
+            <!-- Cheeks -->
+            <circle cx="33" cy="65" r="3" fill="#fecaca" fill-opacity="0.5" />
+            <circle cx="67" cy="65" r="3" fill="#fecaca" fill-opacity="0.5" />
+            <!-- Little Leaf on Head -->
+            <path d="M50 20 L55 10 Q50 5 45 10 Z" fill="#10b981" />
+        </svg>
     </div>
 
     <header>
@@ -613,12 +940,13 @@
     <main>
         <section class="hero">
             <div class="hero-content">
-
+                <div class="badge">🌿 The Vision</div>
                 <h1>Eventfolio</h1>
-                <p>Curated tech milestones and hackathon journeys from across the global ecosystem.</p>
+                <p>A premium, highly-interactive journey through technical storytelling, hackathons, and spiritual
+                    adventures—all wrapped in the whimsical warmth of a <strong>Studio Ghibli aesthetic</strong>.</p>
                 <div class="cta-group">
-                    <a href="#events" class="btn btn-main">View Projects</a>
-                    <a href="#stats" class="btn btn-secondary">Insights</a>
+                    <a href="#events" class="btn btn-main">Explore Showcase</a>
+                    <a href="#stats" class="btn btn-secondary">View Stats</a>
                 </div>
             </div>
         </section>
@@ -630,7 +958,7 @@
             <div class="bento-grid">
                 <!-- Row 1 -->
                 <a href="hacktheblock.html" class="bento-card w-2">
-                    <img src="assets/images/20250502_161001.jpg" alt="HTB">
+                    <img src="assets/images/ghibli/hacktheblock.png" alt="HTB" class="ghibli-img">
                     <div class="card-content">
                         <span class="card-icon">🍃</span>
                         <span class="card-category">Hackathon</span>
@@ -639,7 +967,7 @@
                     </div>
                 </a>
                 <a href="iitropar.html" class="bento-card h-2">
-                    <img src="assets/images/MA.png" alt="IIT">
+                    <img src="assets/images/ghibli/advitiya.png" alt="IIT" class="ghibli-img">
                     <div class="card-content">
                         <span class="card-icon">✨</span>
                         <span class="card-category">IIT Ropar</span>
@@ -648,7 +976,7 @@
                     </div>
                 </a>
                 <a href="echo.html" class="bento-card">
-                    <img src="assets/images/2024-02-17-00-13-36-699.jpg" alt="ECHO">
+                    <img src="assets/images/ghibli/echo.png" alt="ECHO" class="ghibli-img">
                     <div class="card-content">
                         <span class="card-icon">🌂</span>
                         <span class="card-category">Organization</span>
@@ -659,7 +987,7 @@
 
                 <!-- Row 2 -->
                 <a href="sih.html" class="bento-card w-2">
-                    <img src="assets/images/20241220_141641.jpg" alt="SIH">
+                    <img src="assets/images/ghibli/sih.png" alt="SIH" class="ghibli-img">
                     <div class="card-content">
                         <span class="card-icon">💡</span>
                         <span class="card-category">National</span>
@@ -668,7 +996,7 @@
                     </div>
                 </a>
                 <a href="ctnorth.html" class="bento-card">
-                    <img src="assets/images/IMG_20240409_152341.jpg" alt="CTN">
+                    <img src="assets/images/ghibli/ctnorth.png" alt="CTN" class="ghibli-img">
                     <div class="card-content">
                         <span class="card-icon">🏰</span>
                         <span class="card-category">Tech</span>
@@ -679,7 +1007,7 @@
 
                 <!-- Row 3 -->
                 <a href="igcmun.html" class="bento-card w-2">
-                    <img src="assets/images/20240830_165011.jpg" alt="MUN">
+                    <img src="assets/images/ghibli/igcmun.png" alt="MUN" class="ghibli-img">
                     <div class="card-content">
                         <span class="card-icon">🕊️</span>
                         <span class="card-category">Diplomacy</span>
@@ -688,7 +1016,7 @@
                     </div>
                 </a>
                 <a href="ct.html" class="bento-card h-2">
-                    <img src="assets/images/IMG_20240409_152331.jpg" alt="CT">
+                    <img src="assets/images/ghibli/ctgroup.png" alt="CT" class="ghibli-img">
                     <div class="card-content">
                         <span class="card-icon">🤝</span>
                         <span class="card-category">Participation</span>
@@ -697,7 +1025,7 @@
                     </div>
                 </a>
                 <a href="vaishnodevi.html" class="bento-card">
-                    <img src="assets/images/VD1.jpg" alt="VD">
+                    <img src="assets/images/ghibli/journey.png" alt="VD" class="ghibli-img">
                     <div class="card-content">
                         <span class="card-icon">⛩️</span>
                         <span class="card-category">Experience</span>
@@ -708,7 +1036,7 @@
 
                 <!-- Row 4 -->
                 <a href="scc.html" class="bento-card w-2">
-                    <img src="assets/images/IMG_20240409_171428.jpg" alt="SCC">
+                    <img src="assets/images/ghibli/scc.png" alt="SCC" class="ghibli-img">
                     <div class="card-content">
                         <span class="card-icon">💼</span>
                         <span class="card-category">Committee</span>
@@ -717,7 +1045,7 @@
                     </div>
                 </a>
                 <a href="hostel.html" class="bento-card">
-                    <img src="assets/images/20250212_114300.jpg" alt="Hostel">
+                    <img src="assets/images/ghibli/hostel.png" alt="Hostel" class="ghibli-img">
                     <div class="card-content">
                         <span class="card-icon">🏠</span>
                         <span class="card-category">Management</span>
@@ -747,13 +1075,17 @@
     </main>
 
     <footer>
-        <div class="footer-logo">EVENTFOLIO</div>
-        <div class="social-links">
-            <a href="#"><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fab fa-linkedin"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+        <div class="footer-decoration"></div>
+        <div class="footer-content">
+            <div class="footer-logo">EVENTFOLIO</div>
+            <div class="social-links">
+                <a href="https://github.com/ajaygangwar945" target="_blank" rel="noopener"><i
+                        class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/ajaygangwar945" target="_blank" rel="noopener"><i
+                        class="fab fa-linkedin"></i></a>
+            </div>
+            <p class="copyright">&copy; 2026 Constructed by Ajay Gangwar</p>
         </div>
-        <p class="copyright">&copy; 2026 Constructed by Ajay</p>
     </footer>
 
     <script>

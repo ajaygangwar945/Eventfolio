@@ -1,0 +1,40 @@
+<svg width="1200" height="200" viewBox="0 0 1200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Sky Gradient -->
+  <defs>
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#a2d2ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#caf0f8;stop-opacity:1" />
+    </linearGradient>
+    <radialGradient id="sunGlow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+      <stop offset="0%" style="stop-color:#fff9ec;stop-opacity:0.6" />
+      <stop offset="100%" style="stop-color:#fff9ec;stop-opacity:0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Background Sky -->
+  <rect width="1200" height="200" fill="url(#skyGradient)" />
+  <circle cx="900" cy="60" r="100" fill="url(#sunGlow)" />
+
+  <!-- Distant Hills -->
+  <path d="M0 200 L0 140 Q300 100 600 150 Q900 180 1200 130 L1200 200 Z" fill="#90be6d" opacity="0.6" />
+  <path d="M0 200 L0 160 Q400 130 800 170 Q1000 190 1200 150 L1200 200 Z" fill="#43aa8b" opacity="0.8" />
+  
+  <!-- Foreground Hill -->
+  <path d="M-50 200 L-50 170 Q200 140 500 180 Q800 210 1250 160 L1250 200 Z" fill="#1b4332" />
+
+  <!-- Clouds -->
+  <g fill="white" opacity="0.7">
+    <ellipse cx="150" cy="50" rx="40" ry="20" />
+    <ellipse cx="180" cy="60" rx="30" ry="15" />
+    <ellipse cx="450" cy="30" rx="50" ry="25" />
+    <ellipse cx="490" cy="40" rx="35" ry="18" />
+    <ellipse cx="1050" cy="45" rx="45" ry="22" />
+  </g>
+
+  <!-- Floating Spirit/Lantern Silhouettes (Subtle) -->
+  <g fill="#fff9ec" opacity="0.4">
+    <rect x="250" y="80" width="12" height="18" rx="4" />
+    <rect x="700" y="40" width="10" height="15" rx="3" />
+    <rect x="950" y="90" width="14" height="22" rx="5" />
+  </g>
+</svg>

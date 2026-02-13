@@ -557,19 +557,54 @@
             .project-visual {
                 order: -1;
             }
+
+            .recognition-container {
+                flex-direction: column;
+                padding: 2rem;
+                text-align: center;
+            }
+
+            .cert-details h3 {
+                font-size: 2rem;
+            }
+
+            .org-item {
+                justify-content: center;
+            }
         }
 
         @media (max-width: 768px) {
             h1 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
             }
 
             .hero h2 {
-                font-size: 1.1rem;
+                font-size: 1.2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
             }
 
             section {
                 padding: 4rem 5%;
+            }
+
+            .project-card {
+                padding: 1.5rem;
+            }
+
+            .project-content h3 {
+                font-size: 1.5rem;
+            }
+
+            .btn-link {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .project-links {
+                flex-direction: column;
             }
 
             .lightbox-nav {
@@ -584,6 +619,11 @@
 
             #next-btn {
                 right: 10px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 2.5rem;
             }
         }
     </style>
@@ -635,10 +675,10 @@
                     experience with a robust, secure Node.js backend. Designed for speed and visual excellence, SoftHub
                     provides a seamless way to discover and download apps for Windows, macOS, and Android.</p>
                 <div class="project-links">
-                    <a href="https://github.com/ajaygangwar945/SoftHub" target="_blank" class="btn-link"><i
-                            class="fab fa-github"></i> GitHub Repo</a>
-                    <a href="https://softhub-bwnd.onrender.com/" class="btn-link btn-outline" target="_blank"><i
-                            class="fas fa-external-link-alt"></i> Live Demo</a>
+                    <a href="https://github.com/ajaygangwar945/SoftHub" target="_blank" rel="noopener"
+                        class="btn-link"><i class="fab fa-github"></i> GitHub Repo</a>
+                    <a href="https://softhub-bwnd.onrender.com/" class="btn-link btn-outline" target="_blank"
+                        rel="noopener"><i class="fas fa-external-link-alt"></i> Live Demo</a>
                 </div>
             </div>
             <div class="project-visual">

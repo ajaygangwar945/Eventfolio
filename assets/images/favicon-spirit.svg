@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <!-- Simplified Whimsical Spirit Head -->
+    <path d="M50 20 C30 20 15 40 15 65 C15 85 30 95 50 95 C70 95 85 85 85 65 C85 40 70 20 50 20" fill="#10b981" />
+    <!-- Eyes -->
+    <circle cx="38" cy="62" r="5" fill="white" />
+    <circle cx="62" cy="62" r="5" fill="white" />
+    <!-- Little Ears/Antennae -->
+    <path d="M35 22 L25 10" stroke="#10b981" stroke-width="4" stroke-linecap="round" />
+    <path d="M65 22 L75 10" stroke="#10b981" stroke-width="4" stroke-linecap="round" />
+</svg>
