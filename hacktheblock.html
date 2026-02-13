@@ -674,60 +674,145 @@
         }
 
         @media only screen and (max-width: 768px) {
+            nav {
+                padding: 1rem 5%;
+            }
+
+            .logo img {
+                height: 30px;
+            }
+
+            .back-btn {
+                padding: 0.4rem 1rem;
+                font-size: 0.8rem;
+            }
+
             .lightbox-content {
-                width: 100%;
+                width: 95%;
+                max-height: 50vh;
             }
 
             .glitch {
-                font-size: 2.8rem;
+                font-size: 2.5rem;
             }
 
             .hero p {
-                font-size: 1rem;
+                font-size: 0.9rem;
                 white-space: normal;
                 animation: none;
                 border-right: none;
                 padding: 0 5%;
+                width: 100% !important;
             }
 
             .hero {
-                height: 60vh;
+                height: 50vh;
                 padding-top: 4rem;
             }
 
+            .achievement-badge {
+                transform: skew(-10deg);
+                padding: 0.5rem 1rem;
+            }
+
+            .achievement-badge .rank {
+                font-size: 1.2rem;
+            }
+
+            .achievement-badge .event {
+                font-size: 0.8rem;
+            }
+
             .section-title {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .content-section {
+                padding: 3rem 5%;
+                gap: 2.5rem;
             }
 
             .narrative p {
-                font-size: 1rem;
+                font-size: 0.95rem;
+                line-height: 1.6;
             }
 
             .member-card {
-                padding: 1rem;
+                padding: 0.8rem 1.2rem;
+                font-size: 1rem;
                 width: 100%;
             }
 
             .recognition-container {
                 padding: 1.5rem;
+                gap: 1.5rem;
+            }
+
+            .recognition-container::before {
+                font-size: 0.6rem;
+                left: 10px;
+            }
+
+            .cert-card {
+                max-width: 100%;
             }
 
             .cert-details h3 {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
+            }
+
+            .cert-badge {
+                font-size: 0.7rem;
+                padding: 0.3rem 0.8rem;
+            }
+
+            .cert-details p {
+                font-size: 0.95rem;
+                margin-bottom: 1.5rem;
             }
 
             .project-details {
-                padding: 1.5rem;
+                padding: 1.2rem;
+            }
+
+            .project-details::before {
+                font-size: 0.6rem;
+                left: 10px;
             }
 
             .project-header h3 {
-                font-size: 1.5rem;
+                font-size: 1.3rem;
+            }
+
+            .project-logo {
+                width: 45px;
+                height: 45px;
+            }
+
+            .features-list {
+                gap: 1rem;
+            }
+
+            .feature-bullet-content h5 {
+                font-size: 0.9rem;
+            }
+
+            .feature-bullet-content p {
+                font-size: 0.8rem;
             }
 
             .prev,
             .next {
                 padding: 10px;
                 font-size: 20px;
+                margin-top: -30px;
+            }
+
+            #caption {
+                font-size: 1rem;
+                padding: 10px 5%;
+                width: 100%;
             }
         }
     </style>
@@ -871,7 +956,7 @@
 
         </div>
         <div class="img-card" onclick="openLightbox();currentSlide(2)">
-            <img src="assets/images/hack2.jpg" alt="Team Discussion: Strategizing for the Win" class="gallery-img">
+            <img src="assets/images/hack2.JPG" alt="Team Discussion: Strategizing for the Win" class="gallery-img">
 
         </div>
         <div class="img-card" onclick="openLightbox();currentSlide(3)">
@@ -879,7 +964,7 @@
 
         </div>
         <div class="img-card" onclick="openLightbox();currentSlide(4)">
-            <img src="assets/images/hack4.jpg" alt="The Winning Squad: Celebrating Success" class="gallery-img">
+            <img src="assets/images/hack4.JPG" alt="The Winning Squad: Celebrating Success" class="gallery-img">
 
         </div>
     </section>
@@ -927,9 +1012,9 @@
             if (n > images.length) { slideIndex = 1 }
             if (n < 1) { slideIndex = images.length }
 
-            // Get source from the image and caption from the overlay
+            // Get source from the image and caption from the alt attribute
             lightboxImg.src = images[slideIndex - 1].src;
-            captionText.innerHTML = images[slideIndex - 1].parentElement.querySelector('.overlay h4').innerHTML;
+            captionText.innerHTML = images[slideIndex - 1].alt;
         }
 
         // Keyboard navigation
