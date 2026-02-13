@@ -1,0 +1,623 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Career Committee</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/scc-abstract-icon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --neon-cyan: #0ff;
+            --neon-purple: #b026ff;
+            --bg-grid: #050510;
+            --glass: rgba(10, 10, 25, 0.8);
+            --border: rgba(0, 255, 255, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-grid);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        /* Perspective Grid Background */
+        .grid-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background:
+                linear-gradient(rgba(176, 38, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            transform: perspective(500px) rotateX(60deg) translateY(0);
+            transform-origin: top center;
+            animation: gridMove 20s infinite linear;
+        }
+
+        @keyframes gridMove {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 0 500px;
+            }
+        }
+
+        .fade-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--bg-grid) 20%, transparent 80%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        nav {
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--neon-purple);
+            background: rgba(5, 5, 16, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            filter: drop-shadow(0 0 5px var(--neon-cyan));
+            transition: transform 0.3s;
+        }
+
+        .logo:hover img {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 15px var(--neon-cyan));
+        }
+
+        .back-link {
+            color: var(--neon-cyan);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            border: 1px solid var(--neon-cyan);
+            padding: 0.6rem 1.5rem;
+            transition: all 0.3s;
+            background: transparent;
+        }
+
+        .back-link:hover {
+            background: var(--neon-cyan);
+            color: #000;
+            box-shadow: 0 0 20px var(--neon-cyan);
+        }
+
+        header.hero {
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 10vw, 6rem);
+            text-transform: uppercase;
+            background: linear-gradient(to right, var(--neon-cyan), var(--neon-purple));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.5));
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--neon-cyan);
+            letter-spacing: 3px;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 4rem 10%;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--neon-purple);
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            border-left: 5px solid var(--neon-cyan);
+            padding-left: 1.5rem;
+        }
+
+        /* Cyber Glass Cards */
+        .cyber-card {
+            background: var(--glass);
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 3rem;
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cyber-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--neon-cyan), transparent);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+            padding-bottom: 1.5rem;
+        }
+
+        .card-title h2 {
+            font-size: 2.5rem;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .card-badge {
+            color: var(--neon-cyan);
+            font-weight: 700;
+            letter-spacing: 2px;
+            border: 1px solid var(--neon-cyan);
+            padding: 0.4rem 1.2rem;
+        }
+
+        .card-date {
+            color: var(--neon-purple);
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        .card-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #ccc;
+            margin-bottom: 2rem;
+        }
+
+        .responsibilities h4 {
+            color: var(--neon-cyan);
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            text-transform: uppercase;
+        }
+
+        .responsibilities ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .responsibilities li {
+            background: rgba(0, 255, 255, 0.05);
+            padding: 1.2rem;
+            border-left: 2px solid var(--neon-purple);
+            color: #eee;
+        }
+
+        /* Events Horizon Grid */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .event-hub {
+            border: 1px solid rgba(176, 38, 255, 0.3);
+            background: rgba(176, 38, 255, 0.02);
+            padding: 0;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .event-hub:hover {
+            background: rgba(176, 38, 255, 0.1);
+            border-color: var(--neon-purple);
+            transform: translateY(-5px);
+        }
+
+        .event-hub img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(176, 38, 255, 0.3);
+            filter: brightness(0.8);
+            transition: 0.3s;
+        }
+
+        .event-hub:hover img {
+            filter: brightness(1);
+        }
+
+        .event-content {
+            padding: 1.5rem;
+        }
+
+        .event-hub h5 {
+            color: var(--neon-cyan);
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .event-hub p {
+            font-size: 1rem;
+            color: #aaa;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .event-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .event-content li {
+            position: relative;
+            padding-left: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #ccc;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        .event-content li::before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--neon-cyan);
+            font-weight: bold;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .tech-frame {
+            border: 1px solid var(--border);
+            padding: 1rem;
+            background: #000;
+            transition: transform 0.3s;
+        }
+
+        .tech-frame:hover {
+            transform: scale(1.02);
+            border-color: var(--neon-cyan);
+        }
+
+        .tech-frame img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            filter: brightness(0.8) contrast(1.2);
+        }
+
+        .tech-label {
+            margin-top: 1rem;
+            text-align: center;
+            color: var(--neon-cyan);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 3rem 5%;
+            }
+
+            .card-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            h1 {
+                font-size: 3.5rem;
+            }
+        }
+
+        /* Lightbox Styles */
+        #lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        #lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 80vh;
+            border: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 3rem;
+            color: #fff;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .close-lightbox:hover {
+            color: var(--neon-cyan);
+            transform: scale(1.1);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            font-size: 2rem;
+            padding: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-nav:hover {
+            background: var(--neon-cyan);
+            color: #000;
+        }
+
+        #prev-btn {
+            left: 30px;
+        }
+
+        #next-btn {
+            right: 30px;
+        }
+
+        .event-hub {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="grid-bg"></div>
+    <div class="fade-overlay"></div>
+
+    <nav>
+        <a href="index.html" class="logo">
+            <img src="assets/images/scc-abstract-icon.svg" alt="SCC">
+        </a>
+        <a href="index.html" class="back-link">SYSTEM.EXIT()</a>
+    </nav>
+
+    <header class="hero">
+        <h1>Student Career Committee</h1>
+        <p>Representing the student body and organizing technical events</p>
+    </header>
+
+    <section id="leadership">
+        <h2 class="section-title">SCC Command Center</h2>
+        <div class="cyber-card">
+            <div class="card-header">
+                <div class="card-title">
+                    <h2>Student Career Committee</h2>
+                    <div class="card-date">Sep, 2025 – Present</div>
+                </div>
+                <div class="card-badge">Member</div>
+            </div>
+            <div class="card-content">
+                <p>As a member of the Student Career Committee (SCC), I play a pivotal role in bridging the gap between
+                    students and the administration. My focus has been on enhancing the technical culture on campus by
+                    organizing impactful events and workshops.</p>
+                <div class="responsibilities">
+                    <h4>Directives</h4>
+                    <ul>
+                        <li><span>//</span> Represented the student body in meetings with faculty and management,
+                            effectively communicating academic and non-academic concerns.</li>
+                        <li><span>//</span> Actively contributed to organizing and managing technical events, including
+                            coding competitions, workshops, and hackathons, fostering a culture of innovation and
+                            technical growth among students.</li>
+                        <li><span>//</span> Coordinated with tech communities on campus to bring industry speakers,
+                            hands-on sessions, and technology awareness programs, enhancing peer learning and skill
+                            development.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="events-grid">
+
+                <div class="event-hub" onclick="openGallery('summit')">
+                    <img src="assets/images/AI1.jpg" alt="Tech Innovation Summit 2025">
+                    <div class="event-content">
+                        <h5>Tech Innovation Summit 2025</h5>
+                        <ul>
+                            <li>Co-organized a 3-day summit featuring Vivek Sridhar (Microsoft) and Saurav Mittal.</li>
+                            <li>Honored with a medal for leadership and Event contribution.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="event-hub" onclick="openGallery('techfluence')">
+                    <img src="assets/images/TF3.JPG" alt="TechFluence 5.0">
+                    <div class="event-content">
+                        <h5>TechFluence 5.0</h5>
+                        <ul>
+                            <li>Organized TechFluence 5.0 featuring speakers from Google, Meta, and BrandBuilders.</li>
+                            <li>Focused on innovation, adaptability, and meaningful problem-solving.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="event-hub" onclick="openGallery('product')">
+                    <img src="assets/images/S5.jpg" alt="Product Management Summit 2025">
+                    <div class="event-content">
+                        <h5>Product Management Summit 2025</h5>
+                        <ul>
+                            <li>Hosted industry leaders from Rethink Systems and Zepto.</li>
+                            <li>Gained insights on product strategy, leadership, and innovation.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+
+
+    <!-- Lightbox -->
+    <div id="lightbox">
+        <button class="close-lightbox" onclick="closeLightbox()" aria-label="Close Lightbox">&times;</button>
+        <button class="lightbox-nav" id="prev-btn" onclick="changeImage(-1)" aria-label="Previous Image"><i
+                class="fas fa-chevron-left"></i></button>
+        <img id="lightbox-img" src="" alt="Gallery Image">
+        <button class="lightbox-nav" id="next-btn" onclick="changeImage(1)" aria-label="Next Image"><i
+                class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <script>
+        const eventImages = {
+            'summit': [
+                'assets/images/AI1.jpg',
+                'assets/images/AI3.jpg'
+            ],
+            'techfluence': [
+                'assets/images/TF.jpg',
+                'assets/images/TF2.JPG',
+                'assets/images/TF3.JPG',
+                'assets/images/TF4.JPG',
+                'assets/images/TF5.JPG',
+                'assets/images/TF6.JPG',
+                'assets/images/TF7.JPG',
+                'assets/images/TF8.JPG',
+                'assets/images/TF9.JPG',
+                'assets/images/TF10.JPG',
+                'assets/images/TF11.JPG',
+                'assets/images/TF12.JPG'
+            ],
+            'product': [
+                'assets/images/S.jpg',
+                'assets/images/S1.jpg',
+                'assets/images/S2.jpg',
+                'assets/images/S3.jpg',
+                'assets/images/S4.jpg',
+                'assets/images/S5.jpg'
+
+            ]
+        };
+
+        let currentGallery = [];
+        let currentIndex = 0;
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        function openGallery(eventId) {
+            currentGallery = eventImages[eventId];
+            currentIndex = 0;
+            updateLightbox();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function updateLightbox() {
+            lightboxImg.src = currentGallery[currentIndex];
+        }
+
+        function changeImage(direction) {
+            currentIndex += direction;
+            if (currentIndex >= currentGallery.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = currentGallery.length - 1;
+            updateLightbox();
+        }
+
+        // Close on outside click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // Keyboard Sync
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') changeImage(-1);
+            if (e.key === 'ArrowRight') changeImage(1);
+        });
+    </script>
+
+</body>
+
+</html>

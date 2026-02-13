@@ -1,0 +1,834 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventfolio | Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/portfolio-fav.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            /* Ghibli Palette: Watercolor & Sunshine */
+            --bg-sky: #e0f2fe;
+            --bg-grass: #f0fdf4;
+            --accent-primary: #10b981;
+            /* Meadow Green */
+            --accent-secondary: #f59e0b;
+            /* Sunshine Yellow */
+            --text-main: #1e293b;
+            /* Ink Blue */
+            --text-dim: #64748b;
+            --glass: rgba(255, 255, 255, 0.6);
+            --glass-border: rgba(16, 185, 129, 0.2);
+            --transition: cubic-bezier(0.23, 1, 0.32, 1);
+            --ghibli-paper: #fffcf2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--ghibli-paper);
+            color: var(--text-main);
+            overflow-x: hidden;
+            min-height: 100vh;
+            background-image:
+                radial-gradient(at 0% 0%, var(--bg-sky) 0, transparent 50%),
+                radial-gradient(at 100% 100%, var(--bg-grass) 0, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .nebula-glow {
+            position: fixed;
+            width: 100vmax;
+            height: 100vmax;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.1) 0%, transparent 70%);
+            top: -50%;
+            left: -50%;
+            z-index: -3;
+            filter: blur(80px);
+            animation: moveClouds 60s infinite alternate linear;
+        }
+
+        /* Anime Cloud Layers */
+        .cloud-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+            opacity: 0.4;
+            background-repeat: repeat-x;
+        }
+
+        .cloud-1 {
+            background: radial-gradient(circle at 20% 30%, white 0%, transparent 15%),
+                radial-gradient(circle at 60% 40%, white 0%, transparent 20%);
+            filter: blur(40px);
+            animation: drift 120s linear infinite;
+        }
+
+        .cloud-2 {
+            background: radial-gradient(circle at 40% 70%, white 0%, transparent 25%),
+                radial-gradient(circle at 80% 20%, white 0%, transparent 15%);
+            filter: blur(60px);
+            animation: drift 180s linear infinite reverse;
+            opacity: 0.3;
+        }
+
+        /* God Rays */
+        .god-rays {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            z-index: -4;
+            background: conic-gradient(from 0deg at 50% 50%,
+                    transparent 0deg,
+                    rgba(245, 158, 11, 0.05) 10deg,
+                    transparent 20deg,
+                    rgba(245, 158, 11, 0.03) 40deg,
+                    transparent 60deg);
+            animation: rotateRays 100s linear infinite;
+        }
+
+        @keyframes drift {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes rotateRays {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes moveClouds {
+            from {
+                transform: translate(0, 0) rotate(0deg);
+            }
+
+            to {
+                transform: translate(20%, 10%) rotate(5deg);
+            }
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            z-index: 1000;
+            background: rgba(255, 252, 242, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .ghibli-logo {
+            width: 45px;
+            height: 45px;
+            fill: var(--accent-primary);
+            filter: drop-shadow(2px 2px 0px rgba(16, 185, 129, 0.2));
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            color: var(--accent-primary);
+            position: relative;
+        }
+
+        /* Soot Sprite Decoration */
+        .soot-sprite {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background: #1e293b;
+            border-radius: 50%;
+            z-index: 5;
+            pointer-events: none;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .soot-sprite::before,
+        .soot-sprite::after {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            top: 6px;
+        }
+
+        .soot-sprite::before {
+            left: 4px;
+        }
+
+        .soot-sprite::after {
+            right: 4px;
+        }
+
+        .soot-sprite::selection {
+            background: transparent;
+        }
+
+        .soot-sprite .pupil {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: black;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+        }
+
+        .soot-sprite.one {
+            top: 15%;
+            left: 5%;
+            animation: floatSprite 8s infinite ease-in-out;
+        }
+
+        .soot-sprite.two {
+            bottom: 20%;
+            right: 8%;
+            animation: floatSprite 10s infinite ease-in-out reverse;
+        }
+
+        .soot-sprite.three {
+            top: 60%;
+            left: 2%;
+            animation: floatSprite 12s infinite ease-in-out 1s;
+        }
+
+        @keyframes floatSprite {
+
+            0%,
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            50% {
+                transform: translate(15px, -20px) scale(1.1);
+            }
+        }
+
+        .card-icon {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            display: block;
+            color: var(--accent-secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dim);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 5%;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            z-index: 10;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--accent-primary);
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 10vw, 6rem);
+            line-height: 1;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-main);
+            text-shadow: 2px 2px 0px rgba(16, 185, 129, 0.1);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-inline: auto;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 1.1rem 2.5rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s;
+            font-size: 1rem;
+        }
+
+        .btn-main {
+            background: var(--accent-primary);
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-main:hover {
+            transform: translateY(-3px);
+            background: var(--accent-secondary);
+            color: #fff;
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--accent-primary);
+            color: var(--accent-primary);
+            background: transparent;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(16, 185, 129, 0.05);
+        }
+
+        /* --- BENTO GRID --- */
+        .bento-section {
+            padding: 8rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .section-header h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 200px;
+            gap: 1.25rem;
+        }
+
+        .bento-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            transition: 0.4s var(--transition);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+        }
+
+        .bento-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 60%);
+            z-index: 1;
+        }
+
+        .bento-card img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+            z-index: 0;
+            opacity: 0.5;
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.25rem;
+            color: #fff;
+        }
+
+        .card-content p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+
+        .card-category {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--accent-primary);
+            margin-bottom: 0.25rem;
+            display: block;
+        }
+
+        /* Spans */
+        .w-2 {
+            grid-column: span 2;
+        }
+
+        .h-2 {
+            grid-row: span 2;
+        }
+
+        .bento-card:hover {
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px);
+        }
+
+        .bento-card:hover img {
+            transform: scale(1.05);
+            opacity: 0.7;
+        }
+
+        /* --- STATS --- */
+        .stats-section {
+            padding: 4rem 5%;
+            background: var(--glass);
+            border-block: 1px solid var(--glass-border);
+            margin-top: 4rem;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.8rem;
+            color: #fff;
+        }
+
+        .stat-item p {
+            color: var(--text-dim);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        footer {
+            padding: 6rem 5% 3rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .social-links a {
+            color: var(--text-dim);
+            transition: 0.2s;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        .copyright {
+            color: var(--text-dim);
+            font-size: 0.75rem;
+        }
+
+        @media (max-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+                grid-auto-rows: 250px;
+            }
+
+            .w-2 {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .bento-grid {
+                grid-template-columns: 1fr;
+                grid-auto-rows: 300px;
+            }
+
+            .w-2,
+            .h-2 {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="bg-canvas"></canvas>
+    <div class="nebula-glow"></div>
+    <div class="cloud-layer cloud-1"></div>
+    <div class="cloud-layer cloud-2"></div>
+    <div class="god-rays"></div>
+
+    <!-- Decorative Anime Spirits -->
+    <div class="soot-sprite one">
+        <div class="pupil"></div>
+    </div>
+    <div class="soot-sprite two">
+        <div class="pupil"></div>
+    </div>
+    <div class="soot-sprite three">
+        <div class="pupil"></div>
+    </div>
+
+    <header>
+        <nav>
+            <a href="#" class="logo-container">
+                <svg class="ghibli-logo" viewBox="0 0 100 100">
+                    <!-- Simple Whimsical Spirit Silhouette -->
+                    <path
+                        d="M50 15 C30 15 15 35 15 60 C15 80 30 90 50 90 C70 90 85 80 85 60 C85 35 70 15 50 15 M35 45 A5 5 0 1 1 35 44 M65 45 A5 5 0 1 1 65 44"
+                        stroke="currentColor" stroke-width="2" fill="none" />
+                    <path d="M30 15 L20 5 M70 15 L80 5" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                </svg>
+                <div class="logo">EVENTFOLIO</div>
+            </a>
+            <div class="nav-links">
+                <a href="#events">Events</a>
+                <a href="#stats">Stats</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+
+                <h1>Eventfolio</h1>
+                <p>Curated tech milestones and hackathon journeys from across the global ecosystem.</p>
+                <div class="cta-group">
+                    <a href="#events" class="btn btn-main">View Projects</a>
+                    <a href="#stats" class="btn btn-secondary">Insights</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="bento-section" id="events">
+            <div class="section-header">
+                <h2>Showcase</h2>
+            </div>
+            <div class="bento-grid">
+                <!-- Row 1 -->
+                <a href="hacktheblock.html" class="bento-card w-2">
+                    <img src="assets/images/20250502_161001.jpg" alt="HTB">
+                    <div class="card-content">
+                        <span class="card-icon">🍃</span>
+                        <span class="card-category">Hackathon</span>
+                        <h3>HackTheBlock</h3>
+                        <p>Blockchain & Security challenge</p>
+                    </div>
+                </a>
+                <a href="iitropar.html" class="bento-card h-2">
+                    <img src="assets/images/MA.png" alt="IIT">
+                    <div class="card-content">
+                        <span class="card-icon">✨</span>
+                        <span class="card-category">IIT Ropar</span>
+                        <h3>Advitiya</h3>
+                        <p>Academic Excellence</p>
+                    </div>
+                </a>
+                <a href="echo.html" class="bento-card">
+                    <img src="assets/images/2024-02-17-00-13-36-699.jpg" alt="ECHO">
+                    <div class="card-content">
+                        <span class="card-icon">🌂</span>
+                        <span class="card-category">Organization</span>
+                        <h3>ECHO</h3>
+                        <p>Leadership Hub</p>
+                    </div>
+                </a>
+
+                <!-- Row 2 -->
+                <a href="sih.html" class="bento-card w-2">
+                    <img src="assets/images/20241220_141641.jpg" alt="SIH">
+                    <div class="card-content">
+                        <span class="card-icon">💡</span>
+                        <span class="card-category">National</span>
+                        <h3>Smart India Hackathon</h3>
+                        <p>Problem solving at scale</p>
+                    </div>
+                </a>
+                <a href="ctnorth.html" class="bento-card">
+                    <img src="assets/images/IMG_20240409_152341.jpg" alt="CTN">
+                    <div class="card-content">
+                        <span class="card-icon">🏰</span>
+                        <span class="card-category">Tech</span>
+                        <h3>CT North</h3>
+                        <p>Institutional Excellence</p>
+                    </div>
+                </a>
+
+                <!-- Row 3 -->
+                <a href="igcmun.html" class="bento-card w-2">
+                    <img src="assets/images/20240830_165011.jpg" alt="MUN">
+                    <div class="card-content">
+                        <span class="card-icon">🕊️</span>
+                        <span class="card-category">Diplomacy</span>
+                        <h3>IGC MUN</h3>
+                        <p>Global Dialogue</p>
+                    </div>
+                </a>
+                <a href="ct.html" class="bento-card h-2">
+                    <img src="assets/images/IMG_20240409_152331.jpg" alt="CT">
+                    <div class="card-content">
+                        <span class="card-icon">🤝</span>
+                        <span class="card-category">Participation</span>
+                        <h3>CT Group</h3>
+                        <p>Collective Achievement</p>
+                    </div>
+                </a>
+                <a href="vaishnodevi.html" class="bento-card">
+                    <img src="assets/images/VD1.jpg" alt="VD">
+                    <div class="card-content">
+                        <span class="card-icon">⛩️</span>
+                        <span class="card-category">Experience</span>
+                        <h3>The Journey</h3>
+                        <p>Spiritual Trek</p>
+                    </div>
+                </a>
+
+                <!-- Row 4 -->
+                <a href="scc.html" class="bento-card w-2">
+                    <img src="assets/images/IMG_20240409_171428.jpg" alt="SCC">
+                    <div class="card-content">
+                        <span class="card-icon">💼</span>
+                        <span class="card-category">Committee</span>
+                        <h3>SCC</h3>
+                        <p>Career Development</p>
+                    </div>
+                </a>
+                <a href="hostel.html" class="bento-card">
+                    <img src="assets/images/20250212_114300.jpg" alt="Hostel">
+                    <div class="card-content">
+                        <span class="card-icon">🏠</span>
+                        <span class="card-category">Management</span>
+                        <h3>Hostel Hub</h3>
+                        <p>Community Building</p>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section class="stats-section" id="stats">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <h4>10</h4>
+                    <p>Event Pages</p>
+                </div>
+                <div class="stat-item">
+                    <h4>08</h4>
+                    <p>Hackathons</p>
+                </div>
+                <div class="stat-item">
+                    <h4>03</h4>
+                    <p>Leadership Roles</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-logo">EVENTFOLIO</div>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p class="copyright">&copy; 2026 Constructed by Ajay</p>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 4 + 2;
+                this.speedX = (Math.random() - 0.2) * 0.8;
+                this.speedY = Math.random() * 0.5 + 0.2;
+                this.opacity = Math.random() * 0.4 + 0.1;
+                this.rotation = Math.random() * Math.PI * 2;
+                this.spin = (Math.random() - 0.5) * 0.02;
+            }
+            update() {
+                this.x += this.speedX + Math.sin(this.y * 0.01) * 0.5; /* Sway Logic */
+                this.y += this.speedY;
+                this.rotation += this.spin;
+                if (this.y > canvas.height) {
+                    this.reset();
+                    this.y = -10;
+                }
+                if (this.x < -20) this.x = canvas.width + 20;
+                if (this.x > canvas.width + 20) this.x = -20;
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.rotation);
+                ctx.fillStyle = `rgba(16, 185, 129, ${this.opacity})`; /* Petal Color */
+                ctx.beginPath();
+                ctx.ellipse(0, 0, this.size, this.size * 0.6, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        function init() { for (let i = 0; i < 80; i++) particles.push(new Particle()); }
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+        init(); animate();
+
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth) - 0.5;
+            const y = (e.clientY / window.innerHeight) - 0.5;
+            document.querySelector('.nebula-glow').style.transform = `translate(${x * 30}px, ${y * 30}px)`;
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.bento-card, .stat-item').forEach(el => {
+            el.style.opacity = 0; el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s var(--transition)';
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,720 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CT GROUP
+    </title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/ct-fav.svg">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --royal-blue: #002366;
+            --gold: #C5A059;
+            --white: #ffffff;
+            --grey: #f0f0f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--royal-blue);
+            overflow-x: hidden;
+        }
+
+        /* Abstract Architecture Background */
+        .architecture-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            perspective: 1000px;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #f5f7fa, #c3cfe2);
+        }
+
+        .pillar {
+            position: absolute;
+            bottom: -100px;
+            width: 60px;
+            background: linear-gradient(90deg, #e0e0e0, #ffffff, #e0e0e0);
+            box-shadow: 10px 0 20px rgba(0, 0, 0, 0.1);
+            transform-style: preserve-3d;
+            animation: rise 4s ease-out forwards;
+        }
+
+        .pillar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 20px;
+            background: var(--royal-blue);
+            border-radius: 2px;
+        }
+
+        @keyframes rise {
+            from {
+                height: 0;
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        nav {
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--royal-blue);
+            color: var(--white);
+        }
+
+        .logo {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: var(--gold);
+            font-size: 1.8rem;
+        }
+
+        .back-link {
+            color: var(--gold);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            border-bottom: 1px solid transparent;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            border-bottom-color: var(--gold);
+        }
+
+        .hero {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            color: var(--royal-blue);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(45deg, var(--royal-blue), var(--gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        p.subtitle {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 800px;
+            line-height: 1.8;
+        }
+
+        .achievements {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 2rem 5%;
+            flex-wrap: wrap;
+        }
+
+        .achievement-card {
+            background: rgba(255, 255, 255, 0.8);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--gold);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            flex: 1;
+            min-width: 280px;
+            max-width: 400px;
+            transition: 0.3s;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-10px);
+            background: var(--royal-blue);
+            color: white;
+            box-shadow: 0 15px 30px rgba(0, 35, 102, 0.3);
+        }
+
+        .achievement-card i {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .achievement-card h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .team-section {
+            padding: 5rem 5%;
+            text-align: center;
+            background: var(--grey);
+        }
+
+        .team-section h2 {
+            font-family: 'Cinzel', serif;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+        }
+
+        .team-grid {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .member {
+            font-weight: 500;
+            font-size: 1.1rem;
+            color: var(--royal-blue);
+            padding: 1rem 1.5rem;
+            background: white;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .member:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 35, 102, 0.1);
+        }
+
+        .member i {
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+
+        .team-footer {
+            margin-top: 2rem;
+            font-style: italic;
+        }
+
+        .certificates-section {
+            padding: 5rem 5%;
+            background: var(--white);
+            text-align: center;
+        }
+
+        .certificates-section h2 {
+            font-family: 'Cinzel', serif;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+        }
+
+        .certificate-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+
+        .cert-img {
+            max-width: 600px;
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            transition: 0.4s;
+            cursor: pointer;
+        }
+
+        .cert-img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 35, 102, 0.3);
+        }
+
+        .cert-content {
+            text-align: left;
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .cert-content h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--royal-blue);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .cert-content p {
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            text-align: left;
+        }
+
+        .cert-content p i {
+            color: var(--gold);
+            margin-top: 6px;
+            flex-shrink: 0;
+        }
+
+        .cert-content p span {
+            flex: 1;
+        }
+
+        .cert-tag {
+            display: inline-block;
+            background: var(--royal-blue);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .cert-quote {
+            font-style: italic;
+            color: #666;
+        }
+
+        .gallery {
+            padding: 5rem 5%;
+            background: var(--white);
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .img-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: 0.4s;
+            height: 300px;
+        }
+
+        .img-container:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 35, 102, 0.3);
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .img-container:hover img {
+            transform: scale(1.1);
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 35, 102, 0.7);
+            -webkit-backdrop-filter: blur(8px);
+            backdrop-filter: blur(8px);
+            color: white;
+            opacity: 0;
+            transition: 0.4s;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .overlay h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            transform: translateY(20px);
+            transition: 0.4s;
+        }
+
+        .overlay i {
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+            transform: scale(0);
+            transition: 0.4s 0.1s;
+        }
+
+        .img-container:hover .overlay h3 {
+            transform: translateY(0);
+        }
+
+        .img-container:hover .overlay i {
+            transform: scale(1);
+        }
+
+        .img-container:hover .overlay {
+            opacity: 1;
+        }
+
+        footer {
+            background: var(--royal-blue);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 5rem;
+        }
+
+        /* Lightbox Styles */
+        #lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        #lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 80vh;
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 30px rgba(197, 160, 89, 0.3);
+            border-radius: 4px;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 3rem;
+            color: #fff;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .close-lightbox:hover {
+            color: var(--gold);
+            transform: scale(1.1);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-size: 2rem;
+            padding: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-nav:hover {
+            background: var(--gold);
+            color: #000;
+        }
+
+        #prev-btn {
+            left: 30px;
+        }
+
+        #next-btn {
+            right: 30px;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero {
+                height: auto;
+                padding: 5rem 1rem;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="architecture-bg" id="pillars">
+        <!-- Pillars injected by JS -->
+    </div>
+
+    <nav>
+        <div class="logo"><i class="fas fa-trophy"></i> CT GROUP</div>
+        <a href="index.html" class="back-link">Return Home</a>
+    </nav>
+
+    <header class="hero">
+        <h1>Code Crafters 2.0</h1>
+        <p class="subtitle">A 36-hour non-stop journey of innovation, late-night coding, and endless debugging. Our team
+            <strong>Noob Hackers</strong> proudly made it to the Top 15 finals among the brightest minds! A celebration
+            of collaboration, patience, and perseverance.
+        </p>
+    </header>
+
+    <section class="achievements">
+        <div class="achievement-card">
+            <i class="fas fa-medal"></i>
+            <h2>Finalists</h2>
+            <p>Among the Top 15 teams selected for the final showdown after 36 hours of intense building.</p>
+        </div>
+        <div class="achievement-card">
+            <i class="fas fa-crown"></i>
+            <h2>Geek Quest Winner</h2>
+            <p>🏆 Secured 1st Place in the solo quiz competition during the hackathon energizers.</p>
+        </div>
+    </section>
+
+    <section class="certificates-section">
+        <h2>Professional Recognition</h2>
+        <div class="certificate-container">
+            <div class="cert-img-wrapper">
+                <img src="assets/images/ct.png" alt="Certificate of Participation" class="cert-img">
+            </div>
+            <div class="cert-content">
+                <span class="cert-tag">Official Certification</span>
+                <h3>Certificate of Participation</h3>
+                <p><i class="fas fa-check-circle"></i> <span>This is to proudly acknowledge that <strong>Mr. Ajay
+                            Gangwar</strong> has successfully participated
+                        in <strong>Hackathon Code Crafter 2.0</strong> held on 10-11 April, 2025.</span></p>
+                <p><i class="fas fa-check-circle"></i> <span>Organized by <strong>TechVerse Community</strong> at CT
+                        University, Ludhiana, this event celebrated
+                        innovation, problem solving, and technological excellence.</span></p>
+                <p class="cert-quote">"We commend your dedication, creativity, and enthusiasm in
+                    contributing to the Hackathon's success."</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery">
+        <div class="grid">
+            <div class="img-container">
+                <img src="assets/images/CT.jpg" alt="Participants collaborating at the hackathon venue">
+                <div class="overlay">
+                    <i class="fas fa-search-plus"></i>
+                    <h3>Collaborative Force</h3>
+                </div>
+            </div>
+            <div class="img-container">
+                <img src="assets/images/CT1.jpg" alt="Team members focused on programming during the 36-hour sprint">
+                <div class="overlay">
+                    <i class="fas fa-search-plus"></i>
+                    <h3>Code & Coffee</h3>
+                </div>
+            </div>
+            <div class="img-container">
+                <img src="assets/images/CT2.jpg" alt="Brainstorming and mapping out the project logic on a whiteboard">
+                <div class="overlay">
+                    <i class="fas fa-search-plus"></i>
+                    <h3>Strategic Planning</h3>
+                </div>
+            </div>
+            <div class="img-container">
+                <img src="assets/images/CT5.jpg" alt="The team celebrating as Top 15 finalists at the closing ceremony">
+                <div class="overlay">
+                    <i class="fas fa-search-plus"></i>
+                    <h3>Finalists' Triumph</h3>
+                </div>
+            </div>
+            <div class="img-container">
+                <img src="assets/images/CT3.jpg" alt="Presenting the final project to the jury and audience">
+                <div class="overlay">
+                    <i class="fas fa-search-plus"></i>
+                    <h3>The Grand Stand</h3>
+                </div>
+            </div>
+            <div class="img-container">
+                <img src="assets/images/CT4.jpg" alt="Candid moment of team camaraderie and shared joy">
+                <div class="overlay">
+                    <i class="fas fa-search-plus"></i>
+                    <h3>Pure Camaraderie</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <h2>Noob Hackers</h2>
+        <div class="team-grid">
+            <div class="member"><i class="fas fa-user-circle"></i> Ajay Gangwar</div>
+            <div class="member"><i class="fas fa-user-circle"></i> Golu Kumar</div>
+            <div class="member"><i class="fas fa-user-circle"></i> Medha Jha</div>
+            <div class="member"><i class="fas fa-user-circle"></i> Neha</div>
+        </div>
+        <p class="team-footer">Special thanks to organizers @tech.versectu and
+            @ctuniversityofficial for this incredible platform.</p>
+    </section>
+
+    <!-- Lightbox Structure -->
+    <div id="lightbox">
+        <button class="close-lightbox" onclick="closeLightbox()" aria-label="Close Lightbox">&times;</button>
+        <button class="lightbox-nav" id="prev-btn" onclick="changeImage(-1)" aria-label="Previous Image"><i
+                class="fas fa-chevron-left"></i></button>
+        <img id="lightbox-img" src="" alt="Gallery Image">
+        <button class="lightbox-nav" id="next-btn" onclick="changeImage(1)" aria-label="Next Image"><i
+                class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Code Crafters 2.0. Built with perseverance by Noob Hackers.</p>
+    </footer>
+
+    <script>
+        const container = document.getElementById('pillars');
+        const count = 8;
+
+        for (let i = 0; i < count; i++) {
+            const pillar = document.createElement('div');
+            pillar.classList.add('pillar');
+            pillar.style.left = `${(i + 1) * (100 / (count + 1))}%`;
+            pillar.style.height = `${Math.random() * 40 + 30}%`;
+            pillar.style.animationDelay = `${i * 0.2}s`;
+            container.appendChild(pillar);
+        }
+
+        // Lightbox Logic
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const galleryImgs = document.querySelectorAll('.img-container img, .cert-img');
+        let currentGallery = [];
+        let currentIndex = 0;
+
+        // Populate Gallery Array
+        galleryImgs.forEach((img, index) => {
+            currentGallery.push(img.src);
+            // If it's the certificate image, we use its wrapper or itself
+            const clickableElement = img.classList.contains('cert-img') ? img : img.parentElement;
+            clickableElement.style.cursor = 'pointer';
+            clickableElement.addEventListener('click', () => openGallery(index));
+        });
+
+        function openGallery(index) {
+            currentIndex = index;
+            updateLightbox();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function updateLightbox() {
+            lightboxImg.src = currentGallery[currentIndex];
+        }
+
+        function changeImage(direction) {
+            currentIndex += direction;
+            if (currentIndex >= currentGallery.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = currentGallery.length - 1;
+            updateLightbox();
+        }
+
+        // Close on outside click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // Keyboard Sync
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') changeImage(-1);
+            if (e.key === 'ArrowRight') changeImage(1);
+        });
+    </script>
+</body>
+
+</html>

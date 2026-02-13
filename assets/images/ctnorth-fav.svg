@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="ctnGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#001a1a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#002b2b;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Main Background Hexagon -->
+  <path d="M50 5 L89 27.5 L89 72.5 L50 95 L11 72.5 L11 27.5 Z" fill="url(#ctnGrad)" stroke="#00ffcc" stroke-width="2" />
+  
+  <!-- Central Icon (Network/Tech inspired) -->
+  <circle cx="50" cy="50" r="8" fill="#00ffcc" filter="url(#glow)" />
+  <line x1="50" y1="50" x2="50" y2="25" stroke="#00ffcc" stroke-width="3" stroke-linecap="round" filter="url(#glow)" />
+  <line x1="50" y1="50" x2="30" y2="60" stroke="#00ffcc" stroke-width="3" stroke-linecap="round" filter="url(#glow)" />
+  <line x1="50" y1="50" x2="70" y2="60" stroke="#00ffcc" stroke-width="3" stroke-linecap="round" filter="url(#glow)" />
+  
+  <!-- Text "CT" -->
+  <text x="50" y="85" font-family="Outfit, Arial" font-size="20" font-weight="800" fill="#98ff98" text-anchor="middle" letter-spacing="2">CTN</text>
+</svg>

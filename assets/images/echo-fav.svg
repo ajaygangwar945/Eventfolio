@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00f2ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ff0055;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <circle cx="50" cy="50" r="48" fill="none" stroke="url(#waveGrad)" stroke-width="2" opacity="0.3"/>
+  <path d="M20 50 Q35 20 50 50 T80 50" fill="none" stroke="url(#waveGrad)" stroke-width="8" stroke-linecap="round">
+    <animate attributeName="d" 
+             values="M20 50 Q35 20 50 50 T80 50;
+                     M20 50 Q35 80 50 50 T80 50;
+                     M20 50 Q35 20 50 50 T80 50" 
+             dur="2s" 
+             repeatCount="indefinite" />
+  </path>
+  <circle cx="50" cy="50" r="10" fill="url(#waveGrad)"/>
+</svg>

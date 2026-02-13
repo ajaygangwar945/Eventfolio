@@ -1,0 +1,893 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IGC MUN</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/UN.svg">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --navy: #0a192f;
+            --navy-light: #112240;
+            --cream: #f5f5f5;
+            --text-dark: #333;
+            --un-blue: #009edc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--navy);
+            color: var(--cream);
+            font-family: 'Lato', sans-serif;
+            overflow-x: hidden;
+        }
+
+        @keyframes rotateSlow {
+            from {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            to {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        @keyframes logoPulse {
+
+            0%,
+            100% {
+                opacity: 0.05;
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            50% {
+                opacity: 0.08;
+                transform: translate(-50%, -50%) scale(1.05);
+            }
+        }
+
+        .un-logo-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vh;
+            height: 80vh;
+            opacity: 0.05;
+            pointer-events: none;
+            animation: rotateSlow 120s linear infinite, logoPulse 10s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .floating-cert {
+            position: absolute;
+            color: rgba(212, 175, 55, 0.1);
+            font-size: 1.5rem;
+            animation: float 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        nav {
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            background: rgba(10, 25, 47, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            height: 40px;
+            width: auto;
+            filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.3));
+        }
+
+        .back-link {
+            color: var(--cream);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            border: 1px solid var(--gold);
+            padding: 0.6rem 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            background: var(--gold);
+            color: var(--navy);
+        }
+
+        header.hero {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            background: linear-gradient(to bottom, transparent, var(--navy));
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            color: var(--gold);
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            color: #8892b0;
+            font-style: italic;
+            margin-top: 1rem;
+        }
+
+        .hero-quote {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-left: 3px solid var(--gold);
+            background: rgba(212, 175, 55, 0.05);
+            max-width: 700px;
+            text-align: left;
+            position: relative;
+        }
+
+        .hero-quote p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--cream);
+            margin: 0;
+            font-style: normal;
+        }
+
+        .hero-quote span {
+            display: block;
+            margin-top: 1rem;
+            color: var(--gold);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .competence-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .competence-item {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            transition: 0.3s;
+        }
+
+        .competence-item h4 {
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .competence-item p {
+            font-size: 0.95rem;
+            color: #a8b2d1;
+            line-height: 1.6;
+        }
+
+        .vision-text {
+            font-size: 1.2rem;
+            line-height: 2;
+            color: #a8b2d1;
+            column-count: 2;
+            column-gap: 4rem;
+            text-align: justify;
+        }
+
+        .spaced-card {
+            margin-top: 4rem;
+        }
+
+        .spaced-card {
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .vision-text {
+                column-count: 1;
+            }
+        }
+
+        .role-badge {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 0.6rem 1.8rem;
+            border-radius: 50px;
+            color: var(--gold);
+            font-size: 1.1rem;
+            margin-top: 2rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: #a8b2d1;
+        }
+
+        .responsibility-list {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+        }
+
+        .responsibility-list li {
+            margin-bottom: 1.2rem;
+            color: #a8b2d1;
+            font-size: 1.05rem;
+            line-height: 1.5;
+            padding-left: 0.5rem;
+        }
+
+
+        /* Section Styling */
+        section {
+            padding: 6rem 10%;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            height: 1px;
+            flex-grow: 1;
+            background: rgba(212, 175, 55, 0.3);
+        }
+
+        /* Glass Cards */
+        .glass-card {
+            background: rgba(17, 34, 64, 0.7);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            transition: transform 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-title h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--cream);
+        }
+
+        .card-badge {
+            color: var(--gold);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+        }
+
+        .card-date {
+            color: #8892b0;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        .card-content p {
+            line-height: 1.8;
+            color: #a8b2d1;
+            margin-bottom: 1.5rem;
+        }
+
+        .responsibilities h4 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .responsibilities ul {
+            list-style: none;
+        }
+
+        .responsibilities li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.8rem;
+            color: #a8b2d1;
+        }
+
+        .responsibilities li::before {
+            content: '▫';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+        }
+
+        /* Certificate Spotlight Section */
+        .certificate-spotlight {
+            padding: 4rem 10%;
+        }
+
+        .recognition-container {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            background: rgba(17, 34, 64, 0.5);
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .cert-card {
+            flex: 1;
+            max-width: 550px;
+            position: relative;
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .cert-card:hover {
+            transform: scale(1.02);
+        }
+
+        .cert-card img {
+            width: 100%;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 8px solid white;
+        }
+
+        .cert-details {
+            flex: 1;
+        }
+
+        .cert-badge {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .cert-details h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--cream);
+        }
+
+        .cert-details p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #a8b2d1;
+            margin-bottom: 2rem;
+        }
+
+        .org-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .org-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--gold);
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .org-item i {
+            width: 20px;
+        }
+
+        /* Diplomatic Archive Gallery */
+        .masonry-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 3rem 10% 6rem;
+        }
+
+        .photo-frame {
+            background: rgba(17, 34, 64, 0.4);
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            padding: 15px 15px 50px 15px;
+            position: relative;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Institutional Badge */
+        .photo-frame::after {
+            content: 'UN ARCHIVE';
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: var(--un-blue);
+            color: #fff;
+            padding: 4px 10px;
+            font-size: 0.6rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+
+        .photo-frame:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+            background: rgba(17, 34, 64, 0.7);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+            border-radius: 4px;
+            filter: contrast(1.05);
+            transition: 0.4s ease;
+        }
+
+        .photo-frame:hover img {
+            filter: contrast(1.1) brightness(1.1);
+        }
+
+        .photo-caption {
+            position: absolute;
+            bottom: 15px;
+            left: 0;
+            width: 100%;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        @media (max-width: 1024px) {
+            .recognition-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .org-item {
+                justify-content: center;
+            }
+        }
+
+        /* Lightbox Styles */
+        #lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 25, 47, 0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #lightbox.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        #lightbox-img {
+            max-width: 90%;
+            max-height: 85vh;
+            border: 2px solid var(--gold);
+            border-radius: 4px;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.8);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--gold);
+            border: none;
+            padding: 1rem;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-nav:hover {
+            background: var(--gold);
+            color: var(--navy);
+        }
+
+        #prev-btn {
+            left: 5%;
+        }
+
+        #next-btn {
+            right: 5%;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: var(--gold);
+            font-size: 3rem;
+            cursor: pointer;
+            transition: 0.3s;
+            background: none;
+            border: none;
+        }
+
+        .close-lightbox:hover {
+            color: #fff;
+            transform: rotate(90deg);
+        }
+
+        #lightbox-caption {
+            position: absolute;
+            bottom: 30px;
+            color: var(--cream);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg-overlay">
+        <img src="assets/images/UN.svg" class="un-logo-bg" alt="Official UN Logo">
+    </div>
+
+    <nav>
+        <div class="logo">
+            <img src="assets/images/UN.svg" alt="UN Emblem" class="logo-icon">
+            IGC MUN
+        </div>
+        <a href="index.html" class="back-link">Return Home</a>
+    </nav>
+
+    <header class="hero">
+        <h1>Global Leadership</h1>
+        <div class="role-badge">Member | Jan, 2024 – Apr, 2024</div>
+        <p>Engaged in diplomatic debates and policy research.</p>
+        <div class="hero-quote reveal">
+            <p>"The art of diplomacy is finding the common ground where nations can stand together, despite the
+                differences that drive them apart."</p>
+            <span>— Strategic Vision</span>
+        </div>
+    </header>
+
+    <section class="content-wrapper">
+        <div class="glass-card reveal">
+            <h2 class="section-title"><i class="fas fa-briefcase"></i> Role & Impact</h2>
+            <p class="intro-text">
+                Participating in the IGC Model United Nations was an enriching experience that sharpened my public
+                speaking, negotiation, and research skills. I engaged in intense debates on global issues and
+                collaborated with delegates to draft resolutions.
+            </p>
+            <ul class="responsibility-list">
+                <li>Engaged in diplomatic debates and extensive research on global policies to represent assigned
+                    portfolios effectively.</li>
+                <li>Drafted working papers and resolutions while collaborating with diverse teams to reach consensus on
+                    complex international issues.</li>
+                <li>Honed public speaking and negotiation skills through formal committee sessions and caucuses.</li>
+            </ul>
+        </div>
+
+        <div class="glass-card reveal spaced-card">
+            <h2 class="section-title"><i class="fas fa-chart-line"></i> Core Competencies</h2>
+            <div class="competence-grid">
+                <div class="competence-item">
+                    <h4>Global Policy Analysis</h4>
+                    <p>Ability to deconstruct complex international frameworks and formulate evidence-based policy
+                        recommendations for diverse socio-economic landscapes.</p>
+                </div>
+                <div class="competence-item">
+                    <h4>Strategic Negotiation</h4>
+                    <p>Proficient in multilateral negotiations, balancing national interests with collective progress to
+                        reach sustainable consensus.</p>
+                </div>
+                <div class="competence-item">
+                    <h4>Diplomatic Oratory</h4>
+                    <p>Skilled in delivering persuasive presentations and speeches to influence international assembly
+                        outcomes and represent organizational values.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-card reveal spaced-card">
+            <h2 class="section-title"><i class="fas fa-eye"></i> Strategic Vision</h2>
+            <div class="vision-text">
+                My journey in the IGC MUN was driven by a fundamental belief in the power of structured dialogue. Beyond
+                the debates, my vision centers on bridging the gap between national technical innovation and global
+                diplomatic standards. I aim to leverage my research and analytical skills to contribute to a more
+                interconnected and resilient global community, where policy is informed by both rigorous logic and deep
+                empathy.
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="certificate-spotlight reveal" id="spotlight">
+        <h2 class="section-title"><i class="fas fa-certificate"></i> Official Recognition</h2>
+        <div class="recognition-container">
+            <div class="cert-card">
+                <img src="assets/images/igcmun.png" alt="Official Certificate of Recognition">
+            </div>
+            <div class="cert-details">
+                <div class="cert-badge">LPU MUN India 2024</div>
+                <h3>Event Coordinator</h3>
+                <p>Recognized for exceptional leadership and organizational excellence in coordinating the International
+                    Global Conference Model United Nations 2024. Oversaw diplomatic proceedings and technical sessions
+                    for global student delegates.</p>
+                <div class="org-stack">
+                    <div class="org-item"><i class="fas fa-university"></i> Lovely Professional University (NAAC A++)
+                    </div>
+                    <div class="org-item"><i class="fas fa-users-cog"></i> Department of Youth Capital</div>
+                    <div class="org-item"><i class="fas fa-globe"></i> UN ESCAP Partnership</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery-area reveal">
+        <h2 class="section-title"><i class="fas fa-camera"></i> Conference Gallery</h2>
+        <div class="masonry-gallery">
+            <div class="photo-frame">
+                <img src="assets/images/IGC1.JPG" alt="General Assembly Session">
+                <div class="photo-caption">General Assembly in Full Session</div>
+            </div>
+            <div class="photo-frame">
+                <img src="assets/images/IGC2.JPG" alt="Delegate Speaking">
+                <div class="photo-caption">Delegate Addressing the Council</div>
+            </div>
+            <div class="photo-frame">
+                <img src="assets/images/IGC3.JPG" alt="Collaborative Drafting">
+                <div class="photo-caption">Collaborative Resolution Drafting</div>
+            </div>
+            <div class="photo-frame">
+                <img src="assets/images/IGC4.JPG" alt="Award Reception">
+                <div class="photo-caption">Receiving Recognition for Diplomacy</div>
+            </div>
+            <div class="photo-frame">
+                <img src="assets/images/IGC5.JPG" alt="Award Excellence">
+                <div class="photo-caption">Award for Excellence in Debate</div>
+            </div>
+            <div class="photo-frame">
+                <img src="assets/images/IGC6.JPG" alt="Conference Moment">
+                <div class="photo-caption">Memorable Conference Moments</div>
+            </div>
+            <div class="photo-frame">
+                <img src="assets/images/IGC7.JPG" alt="Delegate Networking">
+                <div class="photo-caption">Networking with Fellow Delegates</div>
+            </div>
+            <div class="photo-frame">
+                <img src="assets/images/IGC8.JPG" alt="Closing Ceremony">
+                <div class="photo-caption">Closing Ceremony Highlights</div>
+            </div>
+            <div class="photo-frame">
+                <img src="assets/images/IGC9.JPG" alt="Cultural Unity">
+                <div class="photo-caption">Cultural Exchange & Unity</div>
+            </div>
+            <div class="photo-frame">
+                <img src="assets/images/IGC11.JPG" alt="Learning Experience">
+                <div class="photo-caption">A Learning Experience to Remember</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox">
+        <button class="close-lightbox" onclick="closeLightbox()">&times;</button>
+        <button class="lightbox-nav" id="prev-btn" onclick="changeImage(-1)"><i
+                class="fas fa-chevron-left"></i></button>
+        <img id="lightbox-img" src="" alt="Full Screen View">
+        <button class="lightbox-nav" id="next-btn" onclick="changeImage(1)"><i
+                class="fas fa-chevron-right"></i></button>
+        <div id="lightbox-caption"></div>
+    </div>
+
+
+    <script>
+        function createCert() {
+            const cert = document.createElement('div');
+            cert.className = 'floating-cert';
+            cert.innerHTML = '<i class="fas fa-certificate"></i>';
+            cert.style.left = Math.random() * 100 + 'vw';
+            cert.style.top = Math.random() * 100 + 'vh';
+            cert.style.animationDelay = Math.random() * 5 + 's';
+            document.querySelector('.bg-overlay').appendChild(cert);
+        }
+
+        for (let i = 0; i < 8; i++) createCert();
+
+        // Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Lightbox Logic
+        const images = Array.from(document.querySelectorAll('.photo-frame img'));
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        let currentIndex = 0;
+
+        function openLightbox(index) {
+            currentIndex = index;
+            updateLightbox();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function updateLightbox() {
+            const img = images[currentIndex];
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            // Get caption from the sibling div
+            const caption = img.nextElementSibling ? img.nextElementSibling.innerText : '';
+            lightboxCaption.innerText = caption;
+        }
+
+        function changeImage(direction) {
+            currentIndex += direction;
+            if (currentIndex >= images.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = images.length - 1;
+            updateLightbox();
+        }
+
+        // Event Listeners
+        images.forEach((img, index) => {
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', () => openLightbox(index));
+        });
+
+        // Close on outside click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // Keyboard Sync
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') changeImage(-1);
+            if (e.key === 'ArrowRight') changeImage(1);
+        });
+    </script>
+
+</body>
+
+</html>

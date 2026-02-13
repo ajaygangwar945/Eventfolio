@@ -1,0 +1,916 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaishno Devi</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/spiritual-fav.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Lora:ital,wght@0,400;1,400;1,500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --saffron: #FF9933;
+            --deep-orange: #FF4500;
+            --gold: #FFD700;
+            --white: #ffffff;
+            --mist-white: rgba(255, 255, 255, 0.6);
+            --text-dark: #1a1a1a;
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Lora', serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #FFF5E6 0%, #FFE5CC 100%);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Mountain Mist Background */
+        /* Background Animations */
+        .petal-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .petal {
+            position: absolute;
+            background: var(--saffron);
+            border-radius: 15% 70% 20% 80%;
+            opacity: 0.6;
+            animation: fall 10s linear infinite, sway 3s ease-in-out infinite alternate;
+        }
+
+        .particle {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            filter: blur(1px);
+            box-shadow: 0 0 10px var(--gold);
+            animation: floatParticle 15s linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+            }
+
+            100% {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+
+        @keyframes sway {
+            0% {
+                margin-left: 0;
+            }
+
+            100% {
+                margin-left: 50px;
+            }
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(110vh) translateX(0);
+                opacity: 0;
+            }
+
+            50% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-10vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        .mist-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .mist {
+            position: absolute;
+            background: radial-gradient(circle, var(--mist-white), transparent);
+            border-radius: 50%;
+            filter: blur(40px);
+            animation: drift 40s infinite linear;
+            opacity: 0.5;
+        }
+
+        @keyframes drift {
+            from {
+                transform: translate(-20%, -10%);
+            }
+
+            to {
+                transform: translate(120%, 10%);
+            }
+        }
+
+        /* Temple Bells */
+        .temple-bells {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            padding: 0 10%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .bell-wrapper {
+            position: relative;
+            transform-origin: top center;
+            animation: swing 3s infinite ease-in-out;
+        }
+
+        .bell-link {
+            width: 2px;
+            height: 60px;
+            background: #8b4513;
+            margin: 0 auto;
+        }
+
+        .bell-icon {
+            font-size: 2.5rem;
+            color: var(--gold);
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes swing {
+            0% {
+                transform: rotate(5deg);
+            }
+
+            50% {
+                transform: rotate(-5deg);
+            }
+
+            100% {
+                transform: rotate(5deg);
+            }
+        }
+
+        nav {
+            padding: 3rem 5% 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .logo {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            background: linear-gradient(to bottom, var(--saffron), var(--deep-orange));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 10px rgba(255, 153, 51, 0.3);
+            letter-spacing: 5px;
+        }
+
+        .trishul-icon {
+            font-size: 2rem;
+            color: var(--saffron);
+            margin: 1rem 0;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 2rem;
+            right: 5%;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--deep-orange);
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            transition: 0.3s;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            z-index: 100;
+        }
+
+        .back-btn:hover {
+            background: var(--saffron);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 153, 51, 0.4);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 2rem 5% 4rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .hero h2 {
+            font-size: 1.8rem;
+            color: var(--deep-orange);
+            font-weight: 400;
+        }
+
+        /* Journey Grid - Modern Sacred Tablets */
+        .journey-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            padding: 4rem 5% 8rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .sacred-tablet {
+            position: relative;
+            height: 480px;
+            background: rgba(255, 255, 255, 0.1);
+            -webkit-backdrop-filter: blur(20px);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            animation: tabletFloat 6s infinite ease-in-out;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes tabletFloat {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .sacred-tablet:nth-child(even) {
+            animation-delay: -3s;
+        }
+
+        .sacred-tablet:hover {
+            transform: scale(1.05) translateY(-20px);
+            border-color: var(--gold);
+            box-shadow: 0 25px 50px rgba(255, 153, 51, 0.2);
+            z-index: 10;
+        }
+
+        .tablet-image {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .tablet-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .sacred-tablet:hover .tablet-image img {
+            transform: scale(1.1);
+        }
+
+        .tablet-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2.5rem 1.5rem 2rem;
+            background: linear-gradient(transparent, rgba(26, 26, 26, 0.95));
+            color: white;
+            text-align: center;
+            transition: transform 0.4s ease, background 0.4s ease;
+        }
+
+        .sacred-tablet:hover .tablet-overlay {
+            background: linear-gradient(transparent, rgba(26, 26, 26, 0.98) 20%);
+        }
+
+        .tablet-title {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 1.4rem;
+            color: var(--gold);
+            margin-bottom: 0.8rem;
+            letter-spacing: 2px;
+            transition: transform 0.4s ease;
+        }
+
+        .tablet-desc {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+            max-height: 0;
+            overflow: hidden;
+        }
+
+        .sacred-tablet:hover .tablet-desc {
+            opacity: 1;
+            transform: translateY(0);
+            max-height: 150px;
+            margin-top: 0.5rem;
+        }
+
+        .sacred-icon {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.2);
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            z-index: 5;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Mountain Silhouette SVG Footer */
+        .footer-mountains {
+            position: relative;
+            width: 100%;
+            line-height: 0;
+            background-color: transparent;
+        }
+
+        .footer-mountains svg {
+            width: 100%;
+            height: auto;
+            fill: var(--saffron);
+            opacity: 0.1;
+        }
+
+        @media (max-width: 768px) {
+            .temple-bells {
+                padding: 0 2%;
+            }
+
+            .logo {
+                font-size: 2.8rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .journey-grid {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+                padding: 2rem 1rem 6rem;
+            }
+
+            .sacred-tablet {
+                height: 420px;
+                animation: none !important;
+            }
+        }
+
+        /* Divine Abode Section */
+        .divine-abode {
+            padding: 4rem 5%;
+            max-width: 1200px;
+            margin: 4rem auto;
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            background: rgba(255, 255, 255, 0.05);
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            border-radius: 40px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1.2s ease-out;
+        }
+
+        .divine-image {
+            flex: 1;
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.2);
+        }
+
+        .divine-image img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .divine-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .divine-content {
+            flex: 1;
+            color: var(--deep-orange);
+        }
+
+        .divine-content h2 {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--saffron);
+        }
+
+        .divine-content .quote {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+            color: var(--deep-orange);
+        }
+
+        .divine-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #444;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 968px) {
+            .divine-abode {
+                flex-direction: column;
+                padding: 2rem;
+                gap: 2rem;
+                text-align: center;
+                margin: 2rem 1rem;
+            }
+
+            .divine-image img {
+                height: 300px;
+            }
+
+            .divine-content h2 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Lightbox Styles */
+        #lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        #lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 80vh;
+            border: 2px solid var(--gold);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+            border-radius: 4px;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 3rem;
+            color: #fff;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .close-lightbox:hover {
+            color: var(--gold);
+            transform: scale(1.1);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-size: 2rem;
+            padding: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-nav:hover {
+            background: var(--gold);
+            color: #000;
+        }
+
+        #prev-btn {
+            left: 30px;
+        }
+
+        #next-btn {
+            right: 30px;
+        }
+
+        .sacred-tablet {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="mist-container" id="mist"></div>
+    <div class="petal-container" id="petals"></div>
+
+    <div class="temple-bells">
+        <div class="bell-wrapper" style="animation-delay: 0s">
+            <div class="bell-link"></div>
+            <i class="fas fa-bell bell-icon"></i>
+        </div>
+        <div class="bell-wrapper" style="animation-delay: -0.5s">
+            <div class="bell-link"></div>
+            <i class="fas fa-bell bell-icon"></i>
+        </div>
+        <div class="bell-wrapper" style="animation-delay: -1.2s">
+            <div class="bell-link"></div>
+            <i class="fas fa-bell bell-icon"></i>
+        </div>
+        <div class="bell-wrapper" style="animation-delay: -0.8s">
+            <div class="bell-link"></div>
+            <i class="fas fa-bell bell-icon"></i>
+        </div>
+    </div>
+
+    <nav>
+        <div class="logo-container">
+            <div class="logo">Vaishno Devi</div>
+            <div class="trishul-icon"><i class="fas fa-om"></i></div>
+        </div>
+        <a href="index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Home</a>
+    </nav>
+
+    <header class="hero">
+        <p>"A journey of faith, strength, and surrender..."</p>
+        <h2>The Sacred Himalayas</h2>
+    </header>
+
+    <section class="divine-abode">
+        <div class="divine-image">
+            <img src="assets/images/Vaishno_devi.jpg" alt="The Holy Bhawan">
+        </div>
+        <div class="divine-content">
+            <h2>The Divine Abode</h2>
+            <p class="quote">"Jaisa darbar, vaisi kripa—the Goddess calls her children home."</p>
+            <p>
+                At the heart of the Trikuta Mountains lies the ultimate destination of every seeker.
+                The Holy Cave, where the Mother Goddess resides in three forms, is a sanctuary of ultimate
+                peace and divine energy. For centuries, millions have climbed these sacred paths to receive
+                her blessings and witness the magic of the Himalayas.
+            </p>
+        </div>
+    </section>
+
+    <section class="journey-grid">
+        <div class="sacred-tablet">
+            <div class="sacred-icon"><i class="fas fa-mountain"></i></div>
+            <div class="tablet-image">
+                <img src="assets/images/VD1.jpg" alt="Mountain Pass">
+            </div>
+            <div class="tablet-overlay">
+                <h3 class="tablet-title">Infinite Horizons</h3>
+                <p class="tablet-desc">The Trikuta hills stretch as far as the eye can see, where the earth meets the
+                    heavens in a dance of mist and stone.</p>
+            </div>
+        </div>
+
+        <div class="sacred-tablet">
+            <div class="sacred-icon"><i class="fas fa-walking"></i></div>
+            <div class="tablet-image">
+                <img src="assets/images/VD2.jpg" alt="Yatra Way">
+            </div>
+            <div class="tablet-overlay">
+                <h3 class="tablet-title">The Chants of Ascent</h3>
+                <p class="tablet-desc">Echoes of "Jai Mata Di" fill the mountain air as pilgrims move in rhythmic
+                    harmony toward the divine light.</p>
+            </div>
+        </div>
+
+        <div class="sacred-tablet">
+            <div class="sacred-icon"><i class="fas fa-pray"></i></div>
+            <div class="tablet-image">
+                <img src="assets/images/VD3.jpg" alt="Mountain Peak">
+            </div>
+            <div class="tablet-overlay">
+                <h3 class="tablet-title">Peaks of Devotion</h3>
+                <p class="tablet-desc">Every breath in this thin mountain air is a prayer, a testament to the strength
+                    found in absolute faith.</p>
+            </div>
+        </div>
+
+        <div class="sacred-tablet">
+            <div class="sacred-icon"><i class="fas fa-mountain-sun"></i></div>
+            <div class="tablet-image">
+                <img src="assets/images/VD4.jpg" alt="Evening View">
+            </div>
+            <div class="tablet-overlay">
+                <h3 class="tablet-title">Himalayan Glow</h3>
+                <p class="tablet-desc">As the sun sets, the snow-capped peaks ignite in shades of gold and amber, like
+                    lamps lit for the evening aarti.</p>
+            </div>
+        </div>
+
+        <div class="sacred-tablet">
+            <div class="sacred-icon"><i class="fas fa-hands-helping"></i></div>
+            <div class="tablet-image">
+                <img src="assets/images/VD5.jpg" alt="Group Moment">
+            </div>
+            <div class="tablet-overlay">
+                <h3 class="tablet-title">The Boundless Bond</h3>
+                <p class="tablet-desc">Strangers become companions, united by a singular purpose—to reach the feet of
+                    the Mother Goddess.</p>
+            </div>
+        </div>
+
+        <div class="sacred-tablet">
+            <div class="sacred-icon"><i class="fas fa-dharmachakra"></i></div>
+            <div class="tablet-image">
+                <img src="assets/images/VD6.jpg" alt="Temple Steps">
+            </div>
+            <div class="tablet-overlay">
+                <h3 class="tablet-title">Sacred Thresholds</h3>
+                <p class="tablet-desc">The final steps toward the Bhawan are a meditation on persistence and the quiet
+                    joy of arrival.</p>
+            </div>
+        </div>
+
+        <div class="sacred-tablet">
+            <div class="sacred-icon"><i class="fas fa-eye"></i></div>
+            <div class="tablet-image">
+                <img src="assets/images/VD7.jpg" alt="Valley View">
+            </div>
+            <div class="tablet-overlay">
+                <h3 class="tablet-title">Valley of Grace</h3>
+                <p class="tablet-desc">Looking back at the valley below, one realizes the path was as much inward as it
+                    was upward.</p>
+            </div>
+        </div>
+
+        <div class="sacred-tablet">
+            <div class="sacred-icon"><i class="fas fa-om"></i></div>
+            <div class="tablet-image">
+                <img src="assets/images/VD8.jpg" alt="Journey End">
+            </div>
+            <div class="tablet-overlay">
+                <h3 class="tablet-title">Divine Fulfillment</h3>
+                <p class="tablet-desc">The yatra concludes not at a destination, but in the peace that resides within
+                    after the Mother's darshan.</p>
+            </div>
+        </div>
+
+        <div class="sacred-tablet">
+            <div class="sacred-icon"><i class="fas fa-cloud"></i></div>
+            <div class="tablet-image">
+                <img src="assets/images/VD9.jpg" alt="Journey End">
+            </div>
+            <div class="tablet-overlay">
+                <h3 class="tablet-title">Visions of Peace</h3>
+                <p class="tablet-desc">A moment of stillness amidst the sacred peaks, where the soul finds its ultimate
+                    quietude.</p>
+            </div>
+        </div>
+
+        <div class="sacred-tablet">
+            <div class="sacred-icon"><i class="fas fa-heart"></i></div>
+            <div class="tablet-image">
+                <img src="assets/images/VD11.jpg" alt="Journey End">
+            </div>
+            <div class="tablet-overlay">
+                <h3 class="tablet-title">Eternal Memories</h3>
+                <p class="tablet-desc">A pilgrim returns with a heart full of stories and eyes that have seen the sacred
+                    light of the hills.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Structure -->
+    <div id="lightbox">
+        <button class="close-lightbox" onclick="closeLightbox()" aria-label="Close Lightbox">&times;</button>
+        <button class="lightbox-nav" id="prev-btn" onclick="changeImage(-1)" aria-label="Previous Image"><i
+                class="fas fa-chevron-left"></i></button>
+        <img id="lightbox-img" src="" alt="Gallery Image">
+        <button class="lightbox-nav" id="next-btn" onclick="changeImage(1)" aria-label="Next Image"><i
+                class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <div class="footer-mountains">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path
+                d="M0,120 L0,50 L100,20 L200,60 L300,10 L400,70 L500,30 L600,80 L700,20 L800,90 L900,40 L1000,70 L1100,10 L1200,50 L1200,120 Z">
+            </path>
+        </svg>
+    </div>
+
+    <script>
+        const mistContainer = document.getElementById('mist');
+
+        function createMist() {
+            const mist = document.createElement('div');
+            mist.classList.add('mist');
+            const size = Math.random() * 400 + 300;
+            mist.style.width = size + 'px';
+            mist.style.height = size + 'px';
+            mist.style.top = Math.random() * 100 + 'vh';
+            mist.style.left = '-400px';
+            mist.style.animationDuration = (Math.random() * 20 + 30) + 's';
+            mist.style.opacity = Math.random() * 0.4 + 0.2;
+
+            mistContainer.appendChild(mist);
+
+            setTimeout(() => {
+                mist.remove();
+            }, 50000);
+        }
+
+        const petalContainer = document.getElementById('petals');
+
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+
+            const size = Math.random() * 15 + 10;
+            petal.style.width = size + 'px';
+            petal.style.height = (size * 0.8) + 'px';
+
+            petal.style.left = Math.random() * 100 + 'vw';
+            petal.style.top = '-20px';
+
+            const duration = Math.random() * 5 + 7;
+            petal.style.animationDuration = duration + 's, ' + (Math.random() * 2 + 2) + 's';
+
+            const colors = ['#FF9933', '#FFCC33', '#FFD700', '#FF8C00'];
+            petal.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+            petalContainer.appendChild(petal);
+            setTimeout(() => petal.remove(), duration * 1000);
+        }
+
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+
+            const size = Math.random() * 3 + 1;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+
+            particle.style.left = Math.random() * 100 + 'vw';
+            particle.style.bottom = '-10px';
+
+            const duration = Math.random() * 10 + 10;
+            particle.style.animationDuration = duration + 's';
+
+            petalContainer.appendChild(particle);
+            setTimeout(() => particle.remove(), duration * 1000);
+        }
+
+        setInterval(createMist, 4000);
+        setInterval(createPetal, 400);
+        setInterval(createParticle, 300);
+
+        // Initial mist
+        for (let i = 0; i < 5; i++) createMist();
+
+        // Lightbox Logic
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const galleryImgs = Array.from(document.querySelectorAll('.tablet-image img, .divine-image img'));
+        let currentGallery = galleryImgs.map(img => img.src);
+        let currentIndex = 0;
+
+        galleryImgs.forEach((img, index) => {
+            const clickableElement = img.closest('.sacred-tablet') || img.closest('.divine-image');
+            if (clickableElement) {
+                clickableElement.addEventListener('click', () => openGallery(index));
+            }
+        });
+
+        function openGallery(index) {
+            currentIndex = index;
+            updateLightbox();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function updateLightbox() {
+            lightboxImg.src = currentGallery[currentIndex];
+        }
+
+        function changeImage(direction) {
+            currentIndex += direction;
+            if (currentIndex >= currentGallery.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = currentGallery.length - 1;
+            updateLightbox();
+        }
+
+        // Close on outside click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // Keyboard Sync
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') changeImage(-1);
+            if (e.key === 'ArrowRight') changeImage(1);
+        });
+    </script>
+</body>
+
+</html>

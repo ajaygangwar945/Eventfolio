@@ -1,0 +1,755 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IIT Ropar | Validus & Advitiya</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/advitiya-fav.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF512F;
+            --secondary: #DD2476;
+            --yellow: #F09819;
+            --dark: #200122;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--dark);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* Geometric Background */
+        .shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            background: linear-gradient(to right, #200122, #6f0000);
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.3;
+            animation: floatShape 20s infinite linear;
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 100px solid var(--yellow);
+            top: 20%;
+            left: 10%;
+        }
+
+        .circle {
+            width: 100px;
+            height: 100px;
+            background: var(--secondary);
+            border-radius: 50%;
+            top: 60%;
+            right: 15%;
+            animation-duration: 25s;
+        }
+
+        .square {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            top: 10%;
+            right: 30%;
+            transform: rotate(45deg);
+            animation-duration: 30s;
+        }
+
+        @keyframes floatShape {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            100% {
+                transform: translateY(-100vh) rotate(720deg);
+            }
+        }
+
+        nav {
+            padding: 2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 2rem;
+            letter-spacing: -2px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .hero {
+            height: 50vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 4rem;
+            background: -webkit-linear-gradient(var(--yellow), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            font-weight: 900;
+        }
+
+        .fest-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            /* Restore gap */
+            padding: 2rem 5% 5rem;
+        }
+
+        .fest-card {
+            background: rgba(255, 255, 255, 0.05);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            transition: 0.3s;
+            max-width: 500px;
+            margin: 0;
+            /* Remove overlap */
+            position: relative;
+            background: rgba(17, 17, 17, 0.6);
+        }
+
+        .fest-card:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.1);
+            z-index: 10;
+            position: relative;
+        }
+
+        .fest-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .fest-header h2 {
+            margin-bottom: 0;
+            font-size: 1.8rem;
+        }
+
+        .fest-date {
+            color: var(--yellow);
+            font-weight: bold;
+            white-space: nowrap;
+            margin-left: 1rem;
+        }
+
+        .fest-card h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--yellow);
+        }
+
+        .fest-card ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .fest-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-back {
+            padding: 0.8rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .btn-back:hover {
+            background: var(--primary);
+            box-shadow: 0 0 20px var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* Event Button */
+        .btn-event {
+            display: inline-block;
+            margin-top: 1.5rem;
+            padding: 0.8rem 1.5rem;
+            background: transparent;
+            border: 2px solid var(--yellow);
+            color: var(--yellow);
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-event:hover {
+            background: var(--yellow);
+            color: var(--dark);
+            box-shadow: 0 0 15px var(--yellow);
+        }
+
+        /* Dynamic Certificate Section */
+        /* Dynamic Certificate Grid */
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(900px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 0.4s ease-out;
+            display: none;
+        }
+
+        .certificates-grid.active {
+            display: grid;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cert-card-item {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            background: rgba(17, 17, 17, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 3.5rem;
+            min-height: 450px;
+            /* Ensure substantial height */
+            text-align: left;
+            transition: 0.3s;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-card-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--yellow);
+            background: rgba(17, 17, 17, 0.9);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .cert-card-item .cert-img-container {
+            flex: 0 0 400px;
+            max-width: 400px;
+        }
+
+        .cert-card-item img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 0;
+            border: 4px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: 0.3s;
+        }
+
+        .cert-card-item:hover img {
+            border-color: var(--yellow);
+        }
+
+        .cert-card-item .cert-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            padding-left: 1rem;
+        }
+
+        .cert-card-item h3 {
+            color: var(--yellow);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+            font-weight: 700;
+        }
+
+        .cert-card-item .cert-badge {
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            padding: 0.5rem 1.3rem;
+            background: rgba(240, 152, 25, 0.15);
+            border: 1.5px solid var(--yellow);
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--yellow);
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .cert-card-item .event-name {
+            color: white;
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .cert-card-item .org-name {
+            font-size: 1.05rem;
+            color: #aaa;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        .cert-card-item .issue-date {
+            font-size: 0.95rem;
+            color: var(--primary);
+            margin-top: auto;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        @media (max-width: 900px) {
+            .certificates-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cert-card-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .cert-card-item .cert-content {
+                align-items: center;
+            }
+
+            .cert-card-item .cert-img-container {
+                max-width: 100%;
+                margin-bottom: 1.5rem;
+            }
+        }
+
+        /* Interactive Fest Cards */
+        .fest-card {
+            cursor: pointer;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .fest-card.active-fest {
+            border-color: var(--yellow);
+            background: rgba(255, 255, 255, 0.1);
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(240, 152, 25, 0.2);
+        }
+
+        /* Legacy media query removed/replaced above */
+
+        /* Certificate Section Headers */
+        .certificate-section {
+            padding: 2rem 5% 5rem;
+        }
+
+        .certificate-section h2 {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            background: -webkit-linear-gradient(var(--secondary), var(--yellow));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--yellow);
+            margin-top: 10px;
+        }
+
+        .hero-desc {
+            max-width: 600px;
+            margin: 1rem auto;
+            color: #ddd;
+        }
+
+        /* Lightbox Styles */
+        #lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        #lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 80vh;
+            border: 2px solid var(--yellow);
+            box-shadow: 0 0 30px rgba(240, 152, 25, 0.3);
+            border-radius: 4px;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 3rem;
+            color: #fff;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .close-lightbox:hover {
+            color: var(--yellow);
+            transform: scale(1.1);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--yellow);
+            color: var(--yellow);
+            font-size: 2rem;
+            padding: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-nav:hover {
+            background: var(--yellow);
+            color: #000;
+        }
+
+        #prev-btn {
+            left: 30px;
+        }
+
+        #next-btn {
+            right: 30px;
+        }
+
+        .cert-card-item {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shapes">
+        <div class="shape triangle"></div>
+        <div class="shape circle"></div>
+        <div class="shape square"></div>
+        <div class="shape triangle" style="left: 80%; top: 50%; animation-delay: -5s"></div>
+    </div>
+
+    <nav>
+        <div class="logo">
+            <img src="assets/images/advitiya-fav.svg" alt="IIT Ropar Logo">
+            IIT ROPAR
+        </div>
+        <a href="index.html" class="btn-back">Back to Home</a>
+    </nav>
+
+    <div class="hero">
+        <div>
+            <h1>ADVITIYA</h1>
+            <p class="hero-subtitle">North India's Largest Tech Fest</p>
+            <p class="hero-desc">Advitiya, IIT Ropar's annual technical festival, draws over 25,000 participants
+                nationwide. True to its name "The Unique One," it offers an unparalleled experience of innovation and
+                competition.</p>
+        </div>
+    </div>
+
+    <section class="fest-grid">
+        <div class="fest-card" id="card-25" onclick="showCertificate('25')">
+            <h2>Advitiya '25</h2>
+            <p><strong>Feb 7-9, 2025</strong></p>
+            <p>North India's largest technical fest. A hub for cutting-edge technology, research, and innovation.
+                Highlights include Drone Racing, Robowars, RC ATV Racing, and global artist performances.</p>
+            <a href="https://unstop.com/college-fests/advitiya25-indian-institute-of-technology-iit-ropar-298396"
+                target="_blank" rel="noopener noreferrer" class="btn-event" onclick="event.stopPropagation()">Visit
+                Website</a>
+        </div>
+        <div class="fest-card" id="card-26" onclick="showCertificate('26')">
+            <h2>Advitiya '26</h2>
+            <p><strong>Feb 5-8, 2026</strong></p>
+            <p>North India's largest technical fest. A dynamic platform for competition, learning, and innovation.
+                Featuring events like CosmoQuest, Pre-AI Summit Hackathon, AI Fusion, and Game Jam.</p>
+            <a href="https://unstop.com/college-fests/advitiya26-indian-institute-of-technology-iit-ropar-427285"
+                target="_blank" rel="noopener noreferrer" class="btn-event" onclick="event.stopPropagation()">Visit
+                Website</a>
+        </div>
+    </section>
+
+    <!-- Certificate Section -->
+    <section class="certificate-section">
+        <h2>Official Recognition</h2>
+        <div id="cert-grid" class="certificates-grid">
+            <!-- Certificates will be injected here -->
+        </div>
+    </section>
+
+    <!-- Lightbox Structure -->
+    <div id="lightbox">
+        <button class="close-lightbox" onclick="closeLightbox()" aria-label="Close Lightbox">&times;</button>
+        <button class="lightbox-nav" id="prev-btn" onclick="changeImage(-1)" aria-label="Previous Image"><i
+                class="fas fa-chevron-left"></i></button>
+        <img id="lightbox-img" src="" alt="Gallery Image">
+        <button class="lightbox-nav" id="next-btn" onclick="changeImage(1)" aria-label="Next Image"><i
+                class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <script>
+        const certData = {
+            '25': [
+                {
+                    image: 'assets/images/AIF.png',
+                    title: 'Certificate of Participation',
+                    badge: 'Participant',
+                    event: 'AI Fusion',
+                    org: 'Indian Institute of Technology, Ropar',
+                    date: 'Issued: Feb 9, 2025'
+                },
+                {
+                    image: 'assets/images/CC.png',
+                    title: 'Certificate of Participation',
+                    badge: 'Participant',
+                    event: 'Catalyzing Concepts',
+                    org: 'Indian Institute of Technology, Ropar',
+                    date: 'Issued: Feb 9, 2025'
+                },
+                {
+                    image: 'assets/images/CCH.png',
+                    title: 'Certificate of Participation',
+                    badge: 'Participant',
+                    event: 'Circuit chase',
+                    org: 'Indian Institute of Technology, Ropar',
+                    date: 'Issued: Feb 8, 2025'
+                },
+                {
+                    image: 'assets/images/CH.png',
+                    title: 'Certificate of Participation',
+                    badge: 'Participant',
+                    event: 'CodeHunt',
+                    org: 'Indian Institute of Technology, Ropar',
+                    date: 'Issued: Feb 9, 2025'
+                },
+                {
+                    image: 'assets/images/MA.png',
+                    title: 'Certificate of Participation',
+                    badge: 'Participant',
+                    event: 'Maths Arena',
+                    org: 'Indian Institute of Technology, Ropar',
+                    date: 'Issued: Feb 7, 2025'
+                }
+            ],
+            '26': [
+                {
+                    image: 'assets/images/AIF.png',
+                    title: 'Certificate of Participation',
+                    badge: 'Participant',
+                    event: 'AI Fusion',
+                    org: 'Indian Institute of Technology, Ropar',
+                    date: 'Issued: Feb 9, 2025'
+                },
+                {
+                    image: 'assets/images/CC.png',
+                    title: 'Certificate of Participation',
+                    badge: 'Participant',
+                    event: 'Catalyzing Concepts',
+                    org: 'Indian Institute of Technology, Ropar',
+                    date: 'Issued: Feb 9, 2025'
+                },
+                {
+                    image: 'assets/images/CCH.png',
+                    title: 'Certificate of Participation',
+                    badge: 'Participant',
+                    event: 'Circuit chase',
+                    org: 'Indian Institute of Technology, Ropar',
+                    date: 'Issued: Feb 8, 2025'
+                },
+                {
+                    image: 'assets/images/CH.png',
+                    title: 'Certificate of Participation',
+                    badge: 'Participant',
+                    event: 'CodeHunt',
+                    org: 'Indian Institute of Technology, Ropar',
+                    date: 'Issued: Feb 9, 2025'
+                },
+                {
+                    image: 'assets/images/MA.png',
+                    title: 'Certificate of Participation',
+                    badge: 'Participant',
+                    event: 'Maths Arena',
+                    org: 'Indian Institute of Technology, Ropar',
+                    date: 'Issued: Feb 7, 2025'
+                }
+            ]
+        };
+
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        let currentGallery = [];
+        let currentIndex = 0;
+
+        function showCertificate(festId) {
+            // Update active fest card
+            document.querySelectorAll('.fest-card').forEach(card => card.classList.remove('active-fest'));
+            const activeCard = document.getElementById(`card-${festId}`);
+            if (activeCard) activeCard.classList.add('active-fest');
+
+            const grid = document.getElementById('cert-grid');
+
+            // Fade out
+            grid.classList.remove('active');
+
+            setTimeout(() => {
+                // Clear existing content
+                grid.innerHTML = '';
+
+                // Get certificates for the selected year
+                const certificates = certData[festId];
+                currentGallery = certificates.map(c => c.image);
+
+                if (certificates && certificates.length > 0) {
+                    certificates.forEach((cert, index) => {
+                        const cardHtml = `
+                            <div class="cert-card-item" onclick="openLightbox(${index})">
+                                <div class="cert-img-container">
+                                    <img src="${cert.image}" alt="Certificate">
+                                </div>
+                                <div class="cert-content">
+                                    <span class="cert-badge">${cert.badge}</span>
+                                    <h3>${cert.title}</h3>
+                                    <p class="event-name">${cert.event}</p>
+                                    <p class="org-name">${cert.org}</p>
+                                    <p class="issue-date">${cert.date}</p>
+                                </div>
+                            </div>
+                        `;
+                        grid.innerHTML += cardHtml;
+                    });
+
+                    // Show grid with fade in
+                    grid.style.display = 'grid';
+                    setTimeout(() => {
+                        grid.classList.add('active');
+                    }, 50);
+                }
+            }, 300);
+        }
+
+        function openLightbox(index) {
+            currentIndex = index;
+            updateLightbox();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function updateLightbox() {
+            lightboxImg.src = currentGallery[currentIndex];
+        }
+
+        function changeImage(direction) {
+            currentIndex += direction;
+            if (currentIndex >= currentGallery.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = currentGallery.length - 1;
+            updateLightbox();
+        }
+
+        // Close on outside click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // Keyboard Sync
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') changeImage(-1);
+            if (e.key === 'ArrowRight') changeImage(1);
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            showCertificate('25');
+        });
+    </script>
+
+    <a href="index.html" class="btn-back" style="display: none;">Back to Home</a>
+
+</body>
+
+</html>

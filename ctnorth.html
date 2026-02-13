@@ -1,0 +1,723 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CT North Campus</title>
+    <link rel="icon" type="image/svg+xml" href="assets/images/ctnorth-fav.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #001a1a;
+            /* Dark Teal Background for CT North */
+            --card-bg: #002b2b;
+            --primary: #00ffcc;
+            /* Neon Teal */
+            --accent: #98ff98;
+            /* Mint Green */
+            --highlight: #ffd700;
+            --text-main: #e0f2f1;
+            --text-muted: #b2dfdb;
+            --border: rgba(0, 255, 204, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* Cyber-Nature Background */
+        .tech-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background:
+                radial-gradient(circle at 10% 20%, rgba(0, 255, 204, 0.1), transparent 30%),
+                radial-gradient(circle at 90% 80%, rgba(152, 255, 152, 0.1), transparent 30%);
+            background-size: cover;
+        }
+
+        .grid-hex {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15z' fill-opacity='0.03' fill='%2300ffcc' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        nav {
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 26, 26, 0.9);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .back-btn {
+            background: rgba(0, 255, 204, 0.1);
+            color: var(--primary);
+            text-decoration: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: var(--primary);
+            color: var(--bg-dark);
+            box-shadow: 0 0 15px var(--primary);
+        }
+
+        /* Hero */
+        .hero {
+            padding: 6rem 5% 4rem;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .event-badge {
+            display: inline-block;
+            background: rgba(0, 255, 204, 0.1);
+            color: var(--primary);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 3rem;
+        }
+
+        /* Stats Grid */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 5px 15px rgba(0, 255, 204, 0.1);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 10px rgba(0, 255, 204, 0.4);
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Content Sections */
+        .content-section {
+            padding: 4rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-main);
+        }
+
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 30px;
+            background: var(--primary);
+            border-radius: 2px;
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 255, 204, 0.1);
+        }
+
+        .team-card:hover::before {
+            opacity: 1;
+        }
+
+        .member-role {
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            letter-spacing: 1px;
+        }
+
+        .member-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .member-bio {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Organizers */
+        .organizers-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .organizer-chip {
+            background: rgba(0, 255, 204, 0.05);
+            padding: 0.8rem 1.5rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            transition: 0.3s;
+        }
+
+        .organizer-chip:hover {
+            background: rgba(0, 255, 204, 0.15);
+            border-color: var(--primary);
+        }
+
+        .organizer-chip i {
+            color: var(--primary);
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            cursor: pointer;
+            border: 1px solid transparent;
+            transition: 0.3s;
+        }
+
+        .gallery-item:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem 1.5rem 1rem;
+            background: linear-gradient(to top, rgba(0, 26, 26, 0.9), transparent);
+            transform: translateY(100%);
+            transition: 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        .gallery-overlay h4 {
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        .footer-cta {
+            text-align: center;
+            padding: 5rem 1rem;
+            background: linear-gradient(to bottom, transparent, rgba(0, 255, 204, 0.05));
+            border-top: 1px solid var(--border);
+        }
+
+        /* Certificate Section Styles */
+        .certificate-container {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .certificate-image {
+            flex: 1;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .certificate-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+
+        .certificate-image:hover img {
+            transform: scale(1.02);
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
+        }
+
+        .certificate-details {
+            flex: 1;
+        }
+
+        .certificate-details h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .event-name {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+
+        .org-name {
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+        }
+
+        .issue-date {
+            color: var(--highlight);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cert-badge {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: rgba(0, 255, 204, 0.1);
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 968px) {
+            .certificate-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .certificate-image {
+                max-width: 100%;
+            }
+        }
+
+        /* Lightbox Styles */
+        #lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        #lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        #lightbox img {
+            max-width: 90%;
+            max-height: 80vh;
+            border: 2px solid var(--primary);
+            box-shadow: 0 0 30px rgba(0, 255, 204, 0.3);
+            border-radius: 8px;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 3rem;
+            color: #fff;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .close-lightbox:hover {
+            color: var(--primary);
+            transform: scale(1.1);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 255, 204, 0.1);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            font-size: 2rem;
+            padding: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-nav:hover {
+            background: var(--primary);
+            color: var(--bg-dark);
+        }
+
+        #prev-btn {
+            left: 30px;
+        }
+
+        #next-btn {
+            right: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="tech-bg">
+        <div class="grid-hex"></div>
+    </div>
+
+    <nav>
+        <div class="logo">
+            <i class="fas fa-network-wired"></i> CT<span>North Campus</span>
+        </div>
+        <a href="index.html" class="back-btn">Go Home</a>
+    </nav>
+
+    <header class="hero">
+        <div class="event-badge"><i class="fas fa-code"></i> Hackathon | Innovation</div>
+        <h1>Dev Create 1.0 <br> @ CT North Campus</h1>
+        <p>Excited to be a part of the Dev Create 1.0 Hackathon held at CT North Campus! A space full of creativity,
+            learning, and collaboration where over 650 participants fueled the atmosphere with innovation.</p>
+
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-number">650+</div>
+                <div class="stat-label">Participants</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">200+</div>
+                <div class="stat-label">Teams</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">24h</div>
+                <div class="stat-label">Non-Stop Code</div>
+            </div>
+        </div>
+    </header>
+
+    <section class="content-section">
+        <h2 class="section-title">Organized By</h2>
+        <p style="margin-bottom: 2rem; color: var(--text-muted); font-size: 1.1rem;">
+            A massive shoutout to the organizing team at <strong>CT North Campus</strong> and <strong>GDG
+                Jalandhar</strong>. Special thanks to our mentors for creating this platform.
+        </p>
+        <div class="organizers-list">
+            <div class="organizer-chip">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <span>Anurag Sharma (Ph.D)</span>
+            </div>
+            <div class="organizer-chip">
+                <i class="fas fa-star"></i>
+                <span>Er Anu Arora</span>
+            </div>
+            <div class="organizer-chip">
+                <i class="fas fa-bolt"></i>
+                <span>Inderpal Singh</span>
+            </div>
+            <div class="organizer-chip">
+                <i class="fab fa-google"></i>
+                <span>GDG Jalandhar</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <h2 class="section-title">Dream Team</h2>
+        <p style="margin-bottom: 2rem; color: var(--text-muted);">
+            Working alongside brilliant minds to solve real-world problems. Every late-night brainstorming session added
+            to this incredible experience.
+        </p>
+        <div class="team-grid">
+            <div class="team-card">
+                <div class="member-role">Team Member</div>
+                <div class="member-name">Medha Jha</div>
+                <div class="member-bio">Bringing unique ideas and a positive spirit to every discussion.</div>
+            </div>
+            <div class="team-card">
+                <div class="member-role">Team Member</div>
+                <div class="member-name">Sarwajeet Singh</div>
+                <div class="member-bio">Focusing on problem-solving skills and technical execution.</div>
+            </div>
+            <div class="team-card">
+                <div class="member-role">Team Member</div>
+                <div class="member-name">Golu Kumar</div>
+                <div class="member-bio">Driving innovation with sharp coding and logic.</div>
+            </div>
+            <div class="team-card">
+                <div class="member-role">Team Member</div>
+                <div class="member-name">Ajay Gangwar</div>
+                <div class="member-bio">Fueled by motivation to explore, experiment, and create.</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <h2 class="section-title">Official Recognition</h2>
+        <div style="background: var(--card-bg); padding: 2.5rem; border-radius: 16px; border: 1px solid var(--border);">
+            <div class="certificate-container">
+                <div class="certificate-image">
+                    <img src="assets/images/ctc.jpg" alt="Dev Create Certificate">
+                </div>
+                <div class="certificate-details">
+                    <h3>Certificate of Appreciation</h3>
+                    <p class="event-name">Dev Create 1.0 - 24hr Hackathon</p>
+                    <p class="org-name">CT Group of Institutions, North Campus</p>
+                    <p class="issue-date">Issued: Oct, 2025</p>
+                    <div class="cert-badge">Top Performer</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <h2 class="section-title">Event Gallery</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="assets/images/CTN1.jpg" alt="Dev Create Event">
+                <div class="gallery-overlay">
+                    <h4>Innovation Hub | The Hackathon Floor</h4>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="assets/images/CTN2.jpg" alt="Keynote Session">
+                <div class="gallery-overlay">
+                    <h4>Opening Ceremony | Inspiring Minds</h4>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="assets/images/CTN3.jpg" alt="Hackathon Vibes">
+                <div class="gallery-overlay">
+                    <h4>Code & Coffee | 24 Hours of Innovation</h4>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="assets/images/CTN4.jpg" alt="Team Work">
+                <div class="gallery-overlay">
+                    <h4>Strategic Planning | Team Synergy</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="footer-cta">
+        <h2>"Innovation comes from teamwork, curiosity, and courage."</h2>
+        <p style="margin-top: 1rem; color: var(--text-muted);">Dev Create 1.0 was just the beginning.</p>
+    </div>
+
+    <!-- Lightbox -->
+    <div id="lightbox">
+        <button class="close-lightbox" onclick="closeLightbox()" aria-label="Close Lightbox">&times;</button>
+        <button class="lightbox-nav" id="prev-btn" onclick="changeImage(-1)" aria-label="Previous Image"><i
+                class="fas fa-chevron-left"></i></button>
+        <img id="lightbox-img" src="" alt="Gallery Image">
+        <button class="lightbox-nav" id="next-btn" onclick="changeImage(1)" aria-label="Next Image"><i
+                class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <script>
+        // Lightbox Logic
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const galleryItems = document.querySelectorAll('.gallery-item img');
+        let currentGallery = [];
+        let currentIndex = 0;
+
+        // Populate Gallery Array
+        galleryItems.forEach((img, index) => {
+            currentGallery.push(img.src);
+            img.parentElement.addEventListener('click', () => openGallery(index));
+        });
+
+        function openGallery(index) {
+            currentIndex = index;
+            updateLightbox();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function updateLightbox() {
+            lightboxImg.src = currentGallery[currentIndex];
+        }
+
+        function changeImage(direction) {
+            currentIndex += direction;
+            if (currentIndex >= currentGallery.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = currentGallery.length - 1;
+            updateLightbox();
+        }
+
+        // Close on outside click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // Keyboard Sync
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') changeImage(-1);
+            if (e.key === 'ArrowRight') changeImage(1);
+        });
+    </script>
+
+</body>
+
+</html>
