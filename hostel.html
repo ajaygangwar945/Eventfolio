@@ -504,47 +504,82 @@
             .certificate-container {
                 flex-direction: column;
                 text-align: center;
+                gap: 1.5rem;
             }
 
             .certificate-image {
                 max-width: 100%;
+            }
+
+            .certificate-details h3 {
+                font-size: 1.5rem;
             }
         }
 
         @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1.5rem;
+                padding: 3rem 5% 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+                text-align: center;
+            }
+
+            .back-btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+                width: fit-content;
+                margin: 0 auto;
+            }
+
             .masonry-grid {
                 column-count: 2;
                 column-gap: 15px;
+                padding: 2rem 0;
+            }
+
+            .grid-item {
+                margin-bottom: 20px;
+                padding: 8px 8px 30px 8px;
             }
 
             h1 {
-                font-size: 2.5rem;
+                font-size: 2rem;
+            }
+
+            .role-badge {
+                font-size: 0.9rem;
+                padding: 0.4rem 1.2rem;
+                margin-bottom: 1.5rem;
             }
 
             .hero {
-                padding: 4rem 1rem 2rem;
+                padding: 2rem 1.25rem;
                 min-height: auto;
             }
 
             .hero-desc {
-                font-size: 1rem;
+                font-size: 0.95rem;
+                line-height: 1.5;
             }
 
             .section-title {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
+                margin: 3rem 0 1.5rem;
             }
 
             .info-card {
-                padding: 1.5rem;
+                padding: 1.25rem;
+                margin-bottom: 2rem;
             }
 
-            .certificate-container {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .certificate-image {
-                max-width: 100%;
+            .intro-text,
+            .responsibility-list li {
+                font-size: 0.95rem;
+                line-height: 1.6;
             }
 
             .lightbox-nav {
@@ -567,8 +602,16 @@
                 column-count: 1;
             }
 
+            .grid-item {
+                transform: rotate(0) !important;
+            }
+
             h1 {
-                font-size: 2rem;
+                font-size: 1.8rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
             }
         }
     </style>
@@ -730,7 +773,8 @@
         }
 
         // Continues creation
-        setInterval(createLantern, 800);
+        const isMobile = window.innerWidth <= 768;
+        setInterval(createLantern, isMobile ? 1500 : 800);
 
         // Scroll Reveal
         const observer = new IntersectionObserver((entries) => {
