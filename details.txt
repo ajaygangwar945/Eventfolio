@@ -1,0 +1,68 @@
+Eventfolio: Comprehensive Technical Details & Working Logic
+=========================================================
+
+1. Project Overview
+-------------------
+Eventfolio is a highly-interactive, premium portfolio designed with a dreamy Studio Ghibli aesthetic. It presents various academic, hackathon, and leadership achievements as distinct "worlds" or "experiences." It is completely static, bypassing the need for modern build tools (like Webpack or Vite) to ensure maximum compatibility, ease of deployment, and high vertical performance.
+
+2. Technology Stack & Rationale
+-------------------------------
+The project strictly adheres to pure, standard web technologies:
+* HTML5: For semantic structure and clean DOM representation.
+* CSS3: For styling, layout, themeing, and complex animations (avoids heavy animation libraries).
+* Vanilla JavaScript (JS): For handling simple interactivity without the overhead of heavy frameworks like React or Angular. 
+
+Rationale: By using raw HTML/CSS/JS, the project ensures lightning-fast load times, zero dependencies, and an easy setup process (just open `index.html` in a browser). 
+
+3. Detailed Logic Implementation across the Ecosystem
+---------------------------------------------------
+A. CSS Variable Theming (Design Tokens)
+   - Location: `:root` pseudo-class in styling.
+   - Logic: Global CSS variables (`--bg-sky`, `--accent-primary`, `--ghibli-paper`) are defined to maintain color consistency across the entire portfolio. This makes theme management central and straightforward.
+
+B. Glassmorphism & UI Design
+   - Location: `<header>`, `<nav>`, and `.bento-card` components.
+   - Logic: Achieved using `rgba()` for semi-transparent background colors combined with `-webkit-backdrop-filter: blur(12px)` and `backdrop-filter: blur(12px)`. This creates a frosted-glass effect that sits beautifully above the moving parallax backgrounds.
+
+C. Layouts (Flexbox & CSS Grid)
+   - Flexbox (`display: flex`): Used extensively in the navigation bar, hero sections, and footers for alignment and distribution of space.
+   - CSS Grid & Bento Layouts (`display: grid`): Applied prominently in `index.html` via `.bento-grid`. It uses `grid-template-columns` and `grid-auto-rows` paired with `span` classes (`w-2`, `h-2`) to create a modern, varied grid that visually organizes the 11 specialized worlds.
+
+D. Fluid Typography
+   - Location: Main Hero Headers (`h1`, `h2`).
+   - Logic: The CSS `clamp(min, preferred, max)` function is used (e.g., `clamp(2.5rem, 8vw, 6rem)`). This dynamically scales the font size depending on the viewport width, ensuring text looks great on both mobile phones and 4K displays without needing excessive media queries.
+
+E. Whimsical Animations & Parallax
+   - Location: `#bg-canvas`, `.nebula-glow`, `.cloud-layer`, `.soot-sprite`, `.mascot-ghibli`.
+   - Logic: Uses pure CSS `@keyframes` logic.
+     * `drift`: Moves clouds slowly from right to left using `transform: translateX()`.
+     * `rotateRays`: Creates a spinning god-ray effect using `transform: rotate()`.
+     * `floatSprite` & `ghibliFloat`: Manipulates `transform: translate()` with `rotate/scale` to make sprites bob peacefully in place.
+   - The backgrounds are separate static layers with different animation speeds (parallax effect), creating a deep, 3D illusion behind the content.
+
+4. Component Directory & Specific Implementations
+-------------------------------------------------
+Every experience is isolated to its own HTML file, which ensures modularity and separate aesthetic styling.
+
+1.  Main Hub (`index.html`): The central gateway with a Ghibli-inspired landscape. Uses the core Bento Grid logic to route users.
+2.  Hack the Block (`hacktheblock.html`): Neon-purple cyber-hackathon theme.
+3.  Echo Hackathon (`echo.html`): Wave-inspired dynamic design reflecting rhythm and audio.
+4.  Smart India Hackathon (`sih.html`): Technical deep-dive theme for FHIR-compliant medical tech.
+5.  CT Group Leadership (`ct.html`): Royal blue and gold theme reflecting collegiate administrative impact.
+6.  CT North Campus (`ctnorth.html`): Cyber-nature fusion theme highlighting environmental tech.
+7.  IGC MUN (`igcmun.html`): A formal, UN-inspired interface. Focuses on document and diplomatic event structures.
+8.  IIT Ropar Voyage (`iitropar.html`): Maps out technical certifications using chronological/timeline structural logic.
+9.  Student Career Committee (`scc.html`): Matrix-inspired career-building showcase. Dark mode by default.
+10. Vaishno Devi Adventure (`vaishnodevi.html`): Spiritual journey layout using temple bells and sacred tablet aesthetics.
+11. Hostel Committee (`hostel.html`): Midnight blue structural logic, displaying images in a "Memories" masonry gallery format.
+
+5. Full Working & Execution Flow
+--------------------------------
+1. Initialization: The user opens `index.html`. The browser parses the HTML and immediately applies styling from Google Fonts (Outfit, Space Grotesk) and the embedded/external CSS.
+2. Background Rendering: The `div` layers acting as the background (`.bg-sky`, `.clouds`, `.god-rays`) render at a low z-index (`-2`, `-3`). Browsers activate GPU offloading for their CSS translate animations, ensuring smooth frame rates.
+3. Content & Bento Interaction: The user views the Bento grid layout. Hovering over a `.bento-card` triggers CSS `.card:hover` logic, slightly scaling the images (`transform: scale(1.05)`) and boosting opacity to make them "pop" out of the glass.
+4. Routing: Clicking a project card links directly to the specific `[world].html` file.
+5. Environment Shift: Because each `[world].html` file contains its own specific CSS variables and theme configuration, navigating to a new page instantly shifts the color palette and atmosphere appropriately (e.g., smoothly going from an ocean blue theme to a matrix green theme).
+6. Responsiveness: As the browser resizes (or if on mobile), CSS Grid naturally collapses columns, glass containers shrink down, and text `clamp()` automatically resizes to prevent horizontal scrolling.
+
+There are no databases, servers, or APIs required for operation. The logic is entirely handled client-side by the browser's native rendering engine.

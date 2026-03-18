@@ -44,19 +44,23 @@ The project follows a "Cyber-Ghibli" design philosophy:
 
 ## 🗺️ Project Directory
 
-Explore the 11 specialized worlds within this portfolio:
-
-1. [**Main Hub**](index.html) - The central gateway with a Ghibli-inspired landscape.
-2. [**Hack the Block**](hacktheblock.html) - A neon-purple cyber-hackathon experience.
-3. [**Echo Hackathon**](echo.html) - Wave-inspired design reflecting rhythmic innovation.
-4. [**Smart India Hackathon**](sih.html) - A technical deep-dive into FHIR-compliant medical tech.
-5. [**CT Group Leadership**](ct.html) - A royal blue and gold theme reflecting collegiate impact.
-6. [**CT North Campus**](ctnorth.html) - A cyber-nature fusion theme.
-7. [**IGC MUN**](igcmun.html) - A formal, UN-inspired interface for diplomatic excellence.
-8. [**IIT Ropar Voyage**](iitropar.html) - Technical certifications and collegiate journey.
-9. [**Student Career Committee**](scc.html) - A matrix-inspired career building showcase.
-10. [**Vaishno Devi Adventure**](vaishnodevi.html) - A spiritual journey with temple bells and sacred tablets.
-11. [**Hostel Committee**](hostel.html) - A midnight blue "Memories" masonry gallery.
+```text
+📦 Eventfolio
+ ┣ 📂 assets/              # Core project styling and images
+ ┣ 📜 README.md            # The Vision & Documentation
+ ┣ 📜 details.txt          # Deep Technical Details & Logic
+ ┣ 📜 index.html           # Main Hub (Ghibli-inspired landscape)
+ ┣ 📜 hacktheblock.html    # Hack the Block (Cyber-hackathon)
+ ┣ 📜 echo.html            # Echo Hackathon (Wave-inspired design)
+ ┣ 📜 sih.html             # Smart India Hackathon (FHIR-compliant tech)
+ ┣ 📜 ct.html              # CT Group Leadership (Royal blue theme)
+ ┣ 📜 ctnorth.html         # CT North Campus (Cyber-nature fusion)
+ ┣ 📜 igcmun.html          # IGC MUN (UN-inspired interface)
+ ┣ 📜 iitropar.html        # IIT Ropar Voyage (Technical certifications)
+ ┣ 📜 scc.html             # Student Career Committee (Matrix-inspired)
+ ┣ 📜 vaishnodevi.html     # Vaishno Devi Adventure (Spiritual journey)
+ ┗ 📜 hostel.html          # Hostel Committee ("Memories" masonry gallery)
+```
 
 ---
 
