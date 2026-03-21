@@ -1,11 +1,11 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IIT Ropar</title>
-    <link rel="icon" type="image/svg+xml" href="assets/images/advitiya-fav.svg">
+    <link rel="icon" type="image/svg+xml" href="assets/images/projects/iit-ropar/advitiya-fav.svg">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -556,6 +556,80 @@
         .cert-card-item {
             cursor: pointer;
         }
+
+        /* Gallery Section Styles */
+        .gallery-section {
+            padding: 2rem 5% 5rem;
+            text-align: center;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            aspect-ratio: 16/9;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            border-color: var(--yellow);
+            box-shadow: 0 10px 30px rgba(240, 152, 25, 0.3);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-overlay span {
+            color: #fff;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 1.5rem;
+            }
+        }
     </style>
 </head>
 
@@ -569,7 +643,7 @@
 
     <nav>
         <div class="logo">
-            <img src="assets/images/advitiya-fav.svg" alt="IIT Ropar Logo">
+            <img src="assets/images/projects/iit-ropar/advitiya-fav.svg" alt="IIT Ropar Logo">
             IIT ROPAR
         </div>
         <a href="index.html" class="btn-back">Back to Home</a>
@@ -606,11 +680,58 @@
         </div>
     </section>
 
+    <!-- Campus Gallery Section -->
+    <section id="campus-gallery" class="gallery-section">
+        <h2 class="section-title">Campus Gallery</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item" onclick="openGalleryLightbox(0)">
+                <img src="assets/images/projects/iit-ropar/IITR1.jpg" alt="IIT Ropar Campus">
+                <div class="gallery-overlay"><span>Campus View</span></div>
+            </div>
+            <div class="gallery-item" onclick="openGalleryLightbox(1)">
+                <img src="assets/images/projects/iit-ropar/IITR2.jpg" alt="IIT Ropar Campus">
+                <div class="gallery-overlay"><span>Academic Block</span></div>
+            </div>
+            <div class="gallery-item" onclick="openGalleryLightbox(2)">
+                <img src="assets/images/projects/iit-ropar/IITR3.jpeg" alt="IIT Ropar Campus">
+                <div class="gallery-overlay"><span>Campus Life</span></div>
+            </div>
+            <div class="gallery-item" onclick="openGalleryLightbox(3)">
+                <img src="assets/images/projects/iit-ropar/IITR4.jpeg" alt="IIT Ropar Campus">
+                <div class="gallery-overlay"><span>Architecture</span></div>
+            </div>
+            <div class="gallery-item" onclick="openGalleryLightbox(4)">
+                <img src="assets/images/projects/iit-ropar/IITR5.jpg" alt="IIT Ropar Campus">
+                <div class="gallery-overlay"><span>Innovation Hub</span></div>
+            </div>
+            <div class="gallery-item" onclick="openGalleryLightbox(5)">
+                <img src="assets/images/projects/iit-ropar/IITR6.jpg" alt="IIT Ropar Campus">
+                <div class="gallery-overlay"><span>Students Center</span></div>
+            </div>
+            <div class="gallery-item" onclick="openGalleryLightbox(6)">
+                <img src="assets/images/projects/iit-ropar/IITR7.jpg" alt="IIT Ropar Campus">
+                <div class="gallery-overlay"><span>Campus Evening</span></div>
+            </div>
+            <div class="gallery-item" onclick="openGalleryLightbox(7)">
+                <img src="assets/images/projects/iit-ropar/IITR8.jpg" alt="IIT Ropar Campus">
+                <div class="gallery-overlay"><span>Main Entrance</span></div>
+            </div>
+        </div>
+    </section>
+
     <!-- Certificate Section -->
     <section class="certificate-section">
         <h2 class="section-title">Official Recognition</h2>
         <div id="cert-grid" class="certificates-grid">
             <!-- Certificates will be injected here -->
+        </div>
+    </section>
+
+    <!-- Event Memories Section -->
+    <section id="memories-section" class="gallery-section" style="display: none;">
+        <h2 class="section-title">Event Memories</h2>
+        <div id="memories-grid" class="gallery-grid">
+            <!-- Photos will be injected here -->
         </div>
     </section>
 
@@ -625,10 +746,19 @@
     </div>
 
     <script>
+        const memoriesData = {
+            '26': [
+                { image: 'assets/images/projects/iit-ropar/IITR261.jpg', caption: 'Event Highlight' },
+                { image: 'assets/images/projects/iit-ropar/IITR262.jpg', caption: 'Group Moment' },
+                { image: 'assets/images/projects/iit-ropar/IITR263.jpg', caption: 'Team Spirit' },
+                { image: 'assets/images/projects/iit-ropar/IITR264.jpg', caption: 'Memories' }
+            ]
+        };
+
         const certData = {
             '25': [
                 {
-                    image: 'assets/images/AIF.png',
+                    image: 'assets/images/projects/iit-ropar/AIF.png',
                     title: 'Certificate of Participation',
                     badge: 'Participant',
                     event: 'AI Fusion',
@@ -636,7 +766,7 @@
                     date: 'Issued: Feb 9, 2025'
                 },
                 {
-                    image: 'assets/images/CC.png',
+                    image: 'assets/images/projects/ct/CC.png',
                     title: 'Certificate of Participation',
                     badge: 'Participant',
                     event: 'Catalyzing Concepts',
@@ -644,7 +774,7 @@
                     date: 'Issued: Feb 9, 2025'
                 },
                 {
-                    image: 'assets/images/CCH.png',
+                    image: 'assets/images/projects/ct/CCH.png',
                     title: 'Certificate of Participation',
                     badge: 'Participant',
                     event: 'Circuit chase',
@@ -652,7 +782,7 @@
                     date: 'Issued: Feb 8, 2025'
                 },
                 {
-                    image: 'assets/images/CH.png',
+                    image: 'assets/images/projects/ct/CH.png',
                     title: 'Certificate of Participation',
                     badge: 'Participant',
                     event: 'CodeHunt',
@@ -660,7 +790,7 @@
                     date: 'Issued: Feb 9, 2025'
                 },
                 {
-                    image: 'assets/images/MA.png',
+                    image: 'assets/images/projects/iit-ropar/MA.png',
                     title: 'Certificate of Participation',
                     badge: 'Participant',
                     event: 'Maths Arena',
@@ -670,44 +800,28 @@
             ],
             '26': [
                 {
-                    image: 'assets/images/AIF.png',
+                    image: 'assets/images/projects/iit-ropar/IITRC3.png',
                     title: 'Certificate of Participation',
                     badge: 'Participant',
                     event: 'AI Fusion',
                     org: 'Indian Institute of Technology, Ropar',
-                    date: 'Issued: Feb 9, 2025'
+                    date: 'Issued: Feb 8, 2026'
                 },
                 {
-                    image: 'assets/images/CC.png',
+                    image: 'assets/images/projects/iit-ropar/IITRC2.png',
                     title: 'Certificate of Participation',
                     badge: 'Participant',
-                    event: 'Catalyzing Concepts',
+                    event: 'AImagination',
                     org: 'Indian Institute of Technology, Ropar',
-                    date: 'Issued: Feb 9, 2025'
+                    date: 'Issued: Feb 7, 2026'
                 },
                 {
-                    image: 'assets/images/CCH.png',
-                    title: 'Certificate of Participation',
-                    badge: 'Participant',
-                    event: 'Circuit chase',
-                    org: 'Indian Institute of Technology, Ropar',
-                    date: 'Issued: Feb 8, 2025'
-                },
-                {
-                    image: 'assets/images/CH.png',
+                    image: 'assets/images/projects/iit-ropar/IITRC1.png',
                     title: 'Certificate of Participation',
                     badge: 'Participant',
                     event: 'CodeHunt',
                     org: 'Indian Institute of Technology, Ropar',
-                    date: 'Issued: Feb 9, 2025'
-                },
-                {
-                    image: 'assets/images/MA.png',
-                    title: 'Certificate of Participation',
-                    badge: 'Participant',
-                    event: 'Maths Arena',
-                    org: 'Indian Institute of Technology, Ropar',
-                    date: 'Issued: Feb 7, 2025'
+                    date: 'Issued: Feb 6, 2026'
                 }
             ]
         };
@@ -717,6 +831,32 @@
         let currentGallery = [];
         let currentIndex = 0;
 
+        const campusImages = [
+            'assets/images/projects/iit-ropar/IITR1.jpg',
+            'assets/images/projects/iit-ropar/IITR2.jpg',
+            'assets/images/projects/iit-ropar/IITR3.jpeg',
+            'assets/images/projects/iit-ropar/IITR4.jpeg',
+            'assets/images/projects/iit-ropar/IITR5.jpg',
+            'assets/images/projects/iit-ropar/IITR6.jpg',
+            'assets/images/projects/iit-ropar/IITR7.jpg',
+            'assets/images/projects/iit-ropar/IITR8.jpg'
+        ];
+
+        function openGalleryLightbox(index) {
+            currentGallery = campusImages;
+            openLightbox(index);
+        }
+
+        function openCertLightbox(index, festId) {
+            currentGallery = certData[festId].map(c => c.image);
+            openLightbox(index);
+        }
+
+        function openMemoryLightbox(index, festId) {
+            currentGallery = memoriesData[festId].map(m => m.image);
+            openLightbox(index);
+        }
+
         function showCertificate(festId) {
             // Update active fest card
             document.querySelectorAll('.fest-card').forEach(card => card.classList.remove('active-fest'));
@@ -724,22 +864,30 @@
             if (activeCard) activeCard.classList.add('active-fest');
 
             const grid = document.getElementById('cert-grid');
+            const memoriesSection = document.getElementById('memories-section');
+            const memoriesGrid = document.getElementById('memories-grid');
+            const campusGallery = document.getElementById('campus-gallery');
+
+            // Show campus gallery only for '25
+            if (campusGallery) {
+                campusGallery.style.display = (festId === '25') ? 'block' : 'none';
+            }
 
             // Fade out
             grid.classList.remove('active');
+            memoriesGrid.classList.remove('active');
 
             setTimeout(() => {
                 // Clear existing content
                 grid.innerHTML = '';
+                memoriesGrid.innerHTML = '';
 
                 // Get certificates for the selected year
                 const certificates = certData[festId];
-                currentGallery = certificates.map(c => c.image);
-
                 if (certificates && certificates.length > 0) {
                     certificates.forEach((cert, index) => {
                         const cardHtml = `
-                            <div class="cert-card-item" onclick="openLightbox(${index})">
+                            <div class="cert-card-item" onclick="openCertLightbox(${index}, '${festId}')">
                                 <div class="cert-img-container">
                                     <img src="${cert.image}" alt="Certificate">
                                 </div>
@@ -754,12 +902,28 @@
                         `;
                         grid.innerHTML += cardHtml;
                     });
-
-                    // Show grid with fade in
                     grid.style.display = 'grid';
-                    setTimeout(() => {
-                        grid.classList.add('active');
-                    }, 50);
+                    setTimeout(() => grid.classList.add('active'), 50);
+                } else {
+                    grid.style.display = 'none';
+                }
+
+                // Get memories for the selected year
+                const memories = memoriesData[festId];
+                if (memories && memories.length > 0) {
+                    memoriesSection.style.display = 'block';
+                    memories.forEach((memory, index) => {
+                        const memoryHtml = `
+                            <div class="gallery-item" onclick="openMemoryLightbox(${index}, '${festId}')">
+                                <img src="${memory.image}" alt="${memory.caption}">
+                                <div class="gallery-overlay"><span>${memory.caption}</span></div>
+                            </div>
+                        `;
+                        memoriesGrid.innerHTML += memoryHtml;
+                    });
+                    setTimeout(() => memoriesGrid.classList.add('active'), 50);
+                } else {
+                    memoriesSection.style.display = 'none';
                 }
             }, 300);
         }
